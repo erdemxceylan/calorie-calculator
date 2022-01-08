@@ -1,0 +1,46 @@
+.form {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdown {
+  margin: 0.5rem;
+  width: 100%;
+}
+
+.input {
+  margin: 0.5rem !important;
+  width: 100%;
+}
+
+.button {
+  margin: 0.5rem !important;
+  width: 100%;
+}
+
+@media (min-width: 36rem) {
+  .form {
+    flex-flow: row;
+    justify-content: space-between;
+  }
+
+  .dropdown {
+    width: 55%;
+  }
+
+  .input {
+    width: 7rem;
+  }
+
+  .button {
+    width: 5rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  .dropdown {
+    max-width: 30rem;
+  }
+}

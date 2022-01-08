@@ -1,0 +1,26 @@
+.desktop {
+  display: none;
+}
+
+@media (min-width: 36rem) {
+  .mobile {
+    display: none;
+  }
+
+  .desktop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+  }
+
+  .table {
+    margin: 0.5rem;
+    width: 100%;
+  }
+
+  /* p-datatable-footer */
+  .table > div > div:last-child {
+    padding: 0;
+  }
+}
