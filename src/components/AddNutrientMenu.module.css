@@ -31,16 +31,16 @@
   }
 
   .input {
-    width: 7rem;
+    width: 20%;
   }
 
   .button {
-    width: 5rem;
+    width: 20%;
   }
 }
 
-@media (min-width: 48rem) {
+/* @media (min-width: 48rem) {
   .dropdown {
     max-width: 30rem;
   }
-}
+} */

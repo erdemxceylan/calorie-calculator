@@ -66,7 +66,7 @@ function AddNutrientMenu() {
          proteinsTaken: selectedNutrient.proteins * +consumedQuantity
       };
 
-      dispatch(consumedNutrientsActions.updateConsumedNutrients(consumedNutrient));
+      dispatch(consumedNutrientsActions.addConsumedNutrient(consumedNutrient));
 
       setSelectedNutrient(null);
       setConsumedQuantity("");

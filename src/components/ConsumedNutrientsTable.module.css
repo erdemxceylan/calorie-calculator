@@ -1,32 +1,14 @@
-.desktop {
-  display: none;
+.table {
+  margin: 0.5rem;
 }
 
-@media (min-width: 36rem) {
-  .mobile {
-    display: none;
-  }
+.input {
+  margin: 0.25rem !important;
+  padding: 0.25rem !important;
+  width: 7rem !important;
+}
 
-  .desktop {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-  }
-
-  .table {
-    margin: 0.5rem;
-    width: 100%;
-  }
-
-  .input {
-    margin: 0.25rem !important;
-    padding: 0.25rem !important;
-    width: 7rem !important;
-  }
-
-  /* p-datatable-footer */
-  .table > div > div:last-child {
-    padding: 0;
-  }
+/* p-datatable-footer */
+.table > div > div:last-child {
+  padding: 0;
 }

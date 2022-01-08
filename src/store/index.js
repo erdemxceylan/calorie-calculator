@@ -11,7 +11,7 @@ const consumedNutrientsSlice = createSlice({
    name: "consumed nutrients",
    initialState: initialConsumedNutrientsState,
    reducers: {
-      updateConsumedNutrients(state, action) {
+      addConsumedNutrient(state, action) {
          const existingIndex = state.consumedNutrients.findIndex(nutrient => nutrient.id === action.payload.id);
 
          if (existingIndex >= 0) {
@@ -30,6 +30,31 @@ const consumedNutrientsSlice = createSlice({
             state.consumedNutrients = [...state.consumedNutrients, action.payload];
             state.totalCalories += action.payload.caloriesTaken;
             state.totalProteins += action.payload.proteinsTaken;
+         }
+
+         if (state.consumedNutrients.length > 0) {
+            state.isConsumedNutrientsEmpty = false;
+         } else {
+            state.isConsumedNutrientsEmpty = true;
+         }
+      },
+      updateConsumedNutrient(state, action) {
+         const existingIndex = state.consumedNutrients.findIndex(nutrient => nutrient.id === action.payload.id);
+
+         if (existingIndex >= 0) {
+            const existingNutrient = state.consumedNutrients[existingIndex];
+            const updatedNutrient = {
+               id: existingNutrient.id,
+               name: existingNutrient.name,
+               consumedQuantity: action.payload.consumedQuantity,
+               caloriesTaken: action.payload.caloriesTaken,
+               proteinsTaken: action.payload.proteinsTaken
+            };
+            state.consumedNutrients[existingIndex] = updatedNutrient;
+            state.totalCalories += updatedNutrient.caloriesTaken - existingNutrient.caloriesTaken;
+            state.totalProteins += updatedNutrient.proteinsTaken - existingNutrient.proteinsTaken;
+         } else {
+            return;
          }
 
          if (state.consumedNutrients.length > 0) {
