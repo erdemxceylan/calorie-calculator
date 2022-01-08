@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from "react-redux";
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import { InputText } from 'primereact/inputtext';
 import TotalValues from './TotalValues';
 import styles from "./ConsumedNutrientsTable.module.css";
 import cn from 'classnames';
@@ -25,9 +26,32 @@ function ConsumedNutrientsTable() {
             return rowData.proteinsTaken + " gram";
          case "consumedQuantity":
             return rowData.consumedQuantity + " birim";
-         default:
+         case "name":
             return rowData.name;
+         default:
+            return;
       }
+   }
+
+   function textEditor(options) {
+      return <InputText
+         className={styles.input}
+         type="number"
+         min={0}
+         value={options.value}
+         onChange={(e) => options.editorCallback(e.target.value)}
+      />;
+   }
+
+   function onCellEditComplete(event) {
+      let { rowData, newValue, field, originalEvent } = event;
+
+      if (newValue === rowData.consumedQuantity) {
+         return;
+      } else if (newValue > 0) {
+
+      }
+      console.log(rowData, newValue, field, originalEvent);
    }
 
    return (
@@ -45,15 +69,23 @@ function ConsumedNutrientsTable() {
                   footer={<TotalValues />}
                >
                   {consumedNutrientsTableColumns.map(({ field, header }) => {
-                     return <Column
-                        key={field}
-                        field={field}
-                        header={header}
-                        // style={{ width: '25%' }}
-                        body={rowData => labelField(rowData, field)}
-                     // editor={(options) => cellEditor(options)}
-                     // onCellEditComplete={onCellEditComplete}
-                     />
+                     if (field === "consumedQuantity") {
+                        return <Column
+                           key={field}
+                           field={field}
+                           header={header}
+                           body={rowData => labelField(rowData, field)}
+                           editor={options => textEditor(options)}
+                           onCellEditComplete={onCellEditComplete}
+                        />
+                     } else {
+                        return <Column
+                           key={field}
+                           field={field}
+                           header={header}
+                           body={rowData => labelField(rowData, field)}
+                        />
+                     }
                   })}
                </DataTable>
             </div>

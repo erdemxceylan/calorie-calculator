@@ -16,7 +16,7 @@ const DEFAULT_NUTRIENTS = [
 
 function AddNutrientMenu() {
 
-   const dispatch = useDispatch()
+   const dispatch = useDispatch();
 
    const [selectedNutrient, setSelectedNutrient] = useState(null);
    const [consumedQuantity, setConsumedQuantity] = useState("");
