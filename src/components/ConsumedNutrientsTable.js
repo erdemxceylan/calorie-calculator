@@ -67,7 +67,6 @@ function ConsumedNutrientsTable() {
    }
 
    return (
-      // <div className={styles.desktop}>
       <div className={cn("card p-fluid", styles.table)}>
          <DataTable
             value={consumedNutrients}
@@ -97,7 +96,6 @@ function ConsumedNutrientsTable() {
             })}
          </DataTable>
       </div>
-      // </div>
    )
 }
 
