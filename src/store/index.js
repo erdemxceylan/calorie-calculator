@@ -56,6 +56,12 @@ const consumedNutrientsSlice = createSlice({
          } else {
             return;
          }
+      },
+      deleteConsumedNutrient(state, action) {
+         const updatedConsumedNutrients = state.consumedNutrients.filter(nutrient => nutrient.id !== action.payload.id);
+         state.consumedNutrients = updatedConsumedNutrients;
+         state.totalCalories -= action.payload.calories;
+         state.totalProteins -= action.payload.proteins;
 
          if (state.consumedNutrients.length > 0) {
             state.isConsumedNutrientsEmpty = false;

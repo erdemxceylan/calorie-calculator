@@ -45,7 +45,7 @@ function ConsumedNutrientsTable() {
       />;
    }
 
-   function onCellEditComplete(event) {
+   function cellEditCompletionHandler(event) {
       let { rowData, newValue, originalEvent } = event;
 
       if (newValue === rowData.consumedQuantity) {
@@ -60,7 +60,12 @@ function ConsumedNutrientsTable() {
          };
          dispatch(consumedNutrientsActions.updateConsumedNutrient(updatedNutrient));
       } else if (Number(newValue) === 0) {
-         console.log(newValue);
+         const eraseData = {
+            id: rowData.id,
+            calories: rowData.caloriesTaken,
+            proteins: rowData.proteinsTaken
+         }
+         dispatch(consumedNutrientsActions.deleteConsumedNutrient(eraseData));
       } else {
          originalEvent.preventDefault();
       }
@@ -83,7 +88,7 @@ function ConsumedNutrientsTable() {
                      header={header}
                      body={rowData => labelField(rowData, field)}
                      editor={options => textEditor(options)}
-                     onCellEditComplete={onCellEditComplete}
+                     onCellEditComplete={cellEditCompletionHandler}
                   />
                } else {
                   return <Column

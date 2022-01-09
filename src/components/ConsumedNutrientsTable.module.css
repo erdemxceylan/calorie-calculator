@@ -8,6 +8,10 @@
   width: 7rem !important;
 }
 
+.table th {
+  padding: 0.75rem !important;
+}
+
 /* p-datatable-footer */
 .table > div > div:last-child {
   padding: 0;
