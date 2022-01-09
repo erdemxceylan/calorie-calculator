@@ -1,0 +1,32 @@
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.layout {
+  margin: 0.5rem;
+  padding: 0.5rem;
+  width: 18rem;
+  height: 18rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.radio {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 40%;
+}
+
+.radio h4 {
+  margin: 0;
+  padding: 0;
+}
+
+.radio label {
+  margin: 0.25rem;
+  color: grey;
+}

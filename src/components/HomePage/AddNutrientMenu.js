@@ -3,7 +3,7 @@ import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { useDispatch } from "react-redux";
-import { consumedNutrientsActions } from '../store/index';
+import { consumedNutrientsActions } from '../../store/index';
 import styles from "./AddNutrientMenu.module.css";
 import cn from 'classnames';
 
@@ -90,6 +90,7 @@ function AddNutrientMenu() {
             value={consumedQuantity}
             type="number"
             min={1}
+            placeholder="birim"
             onChange={(e) => setConsumedQuantity(e.target.value)}
          />
          <Button label="Add" className={cn('p-button-success', styles.button)} type='submit' />
