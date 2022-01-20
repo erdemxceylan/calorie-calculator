@@ -24,13 +24,12 @@ const consumedNutrientsSlice = createSlice({
                proteinsTaken: existingNutrient.proteinsTaken + action.payload.proteinsTaken
             };
             state.consumedNutrients[existingIndex] = updatedNutrient;
-            state.totalCalories += action.payload.caloriesTaken;
-            state.totalProteins += action.payload.proteinsTaken;
          } else {
             state.consumedNutrients = [...state.consumedNutrients, action.payload];
-            state.totalCalories += action.payload.caloriesTaken;
-            state.totalProteins += action.payload.proteinsTaken;
          }
+
+         state.totalCalories += action.payload.caloriesTaken;
+         state.totalProteins += action.payload.proteinsTaken;
 
          if (state.consumedNutrients.length > 0) {
             state.isConsumedNutrientsEmpty = false;
