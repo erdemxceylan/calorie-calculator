@@ -1,71 +1,81 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { RadioButton } from 'primereact/radiobutton';
 import { Button } from 'primereact/button';
+import { dataSettingsActions } from '../../store/data-settings';
 import cn from "classnames";
 import styles from "./DataSettings.module.css";
-import Modal from '../UI/Modal';
 
 function DataSettings() {
    const [fitnessGoal, setFitnessGoal] = useState("Weight Gain");
+   const showDataSettings = useSelector(state => state.dataSettings.showDataSettings);
+   const dispatch = useDispatch();
+
+   const submitButton = (
+      <Button
+         label="Submit"
+         className='p-button-success'
+         onClick={submitHandler}
+      />
+   );
 
    function submitHandler(event) {
       event.preventDefault();
       console.log("Submitting..");
    }
 
+   function closeHandler() {
+      dispatch(dataSettingsActions.hide());
+   }
+
    return (
-      <Modal>
-         <form onSubmit={submitHandler} /*className={styles.form}*/>
-            <div className={cn("p-fluid", styles.layout)}>
-               <InputText
-                  type="number"
-                  min={1}
-                  max={100000}
-                  placeholder="Daily Calorie Need (kcal)"
-               //   value={}
-               />
-               <InputText
-                  type="number"
-                  min={1}
-                  max={100}
-                  placeholder="Fat Ratio (%)"
-               //   value={}
-               />
-               <div className={styles.radio}>
-                  <h4>Fitness Goal</h4>
-                  <div className="p-field-radiobutton">
-                     <RadioButton
-                        inputId="weight gain"
-                        value="Weight Gain"
-                        onChange={(e) => setFitnessGoal(e.value)}
-                        checked={fitnessGoal === 'Weight Gain'}
-                     />
-                     <label htmlFor="weight gain">Weight Gain</label>
-                  </div>
-                  <div className="p-field-radiobutton">
-                     <RadioButton
-                        inputId="weight loss"
-                        value="Weight Loss"
-                        onChange={(e) => setFitnessGoal(e.value)}
-                        checked={fitnessGoal === 'Weight Loss'}
-                     />
-                     <label htmlFor="weight loss">Weight Loss</label>
-                  </div>
+      <Dialog
+         className={styles.modal}
+         header="Data Settings"
+         visible={showDataSettings}
+         onHide={closeHandler}
+         footer={submitButton}
+      >
+         <div className={cn("p-fluid", styles.content)}>
+            <InputText
+               type="number"
+               min={1}
+               max={100000}
+               placeholder="Daily Calorie Need (kcal)"
+            //   value={}
+            />
+            <InputText
+               type="number"
+               min={1}
+               max={100}
+               placeholder="Fat Ratio (%)"
+            //   value={}
+            />
+            <div className={styles.radio}>
+               <h4>Fitness Goal</h4>
+               <div className="p-field-radiobutton">
+                  <RadioButton
+                     inputId="weight gain"
+                     value="Weight Gain"
+                     onChange={(e) => setFitnessGoal(e.value)}
+                     checked={fitnessGoal === 'Weight Gain'}
+                  />
+                  <label htmlFor="weight gain">Weight Gain</label>
                </div>
-               <Button
-                  label="Submit"
-                  className='p-button-success'
-                  type='submit'
-               />
-               <Button
-                  label="Close"
-                  className="p-button-danger"
-                  type='button'
-               />
+               <div className="p-field-radiobutton">
+                  <RadioButton
+                     inputId="weight loss"
+                     value="Weight Loss"
+                     onChange={(e) => setFitnessGoal(e.value)}
+                     checked={fitnessGoal === 'Weight Loss'}
+                  />
+                  <label htmlFor="weight loss">Weight Loss</label>
+               </div>
             </div>
-         </form>
-      </Modal>
+         </div>
+      </Dialog>
    )
 }
 

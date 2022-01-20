@@ -1,6 +1,19 @@
-.layout {
+.modal > div:nth-child(1) {
+  padding: 1rem;
+}
+
+.modal > div:nth-child(2),
+.modal > div:nth-child(3) {
+  padding: 0rem 1rem 1rem 1rem;
+}
+
+.modal > div:nth-child(4) {
+  display: none;
+}
+
+.content {
   width: 18rem;
-  height: 20rem;
+  height: 15rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
