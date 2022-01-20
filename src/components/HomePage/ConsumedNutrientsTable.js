@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from "react-redux";
-import { consumedNutrientsActions } from '../../store/index';
+import { consumedNutrientsActions } from '../../store/consumed-nutrients';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
@@ -10,7 +10,7 @@ import cn from 'classnames';
 
 function ConsumedNutrientsTable() {
 
-   const consumedNutrients = useSelector(state => state.consumedNutrients);
+   const consumedNutrients = useSelector(state => state.consumedNutrients.consumedNutrients);
    const dispatch = useDispatch();
 
    const consumedNutrientsTableColumns = [

@@ -11,15 +11,15 @@ import DataSettings from "./components/DataSettings/DataSettings";
 
 function App() {
 
-  const isConsumedNutrientsEmpty = useSelector(state => state.isConsumedNutrientsEmpty);
+  const isConsumedNutrientsEmpty = useSelector(state => state.consumedNutrients.isConsumedNutrientsEmpty);
 
   return (
     <React.Fragment>
-      {/* <Header />
+      <Header />
       <div className={styles.main}>
         <AddNutrientMenu />
         {!isConsumedNutrientsEmpty && <ConsumedNutrientsTable />}
-      </div> */}
+      </div>
       <DataSettings />
     </React.Fragment>
   );

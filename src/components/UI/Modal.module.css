@@ -2,17 +2,22 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   z-index: 20;
   background-color: rgba(0, 0, 0, 0.75);
 }
 
 .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 30;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 .modal {
