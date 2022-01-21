@@ -21,10 +21,10 @@ function Header() {
 
       switch (event.index) {
          case 0:
-            dispatch(pageDisplayActions.displayHomePage());
+            dispatch(pageDisplayActions.showHomePage());
             break;
          case 1:
-            dispatch(pageDisplayActions.displayNutrientList());
+            dispatch(pageDisplayActions.showNutrientList());
             break;
          default:
             break;
