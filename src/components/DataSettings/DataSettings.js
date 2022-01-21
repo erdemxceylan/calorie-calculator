@@ -5,8 +5,8 @@ import { InputText } from 'primereact/inputtext';
 import { RadioButton } from 'primereact/radiobutton';
 import { Button } from 'primereact/button';
 import { dataSettingsActions } from '../../store/data-settings';
-import cn from "classnames";
-import styles from "./DataSettings.module.css";
+import styles from './DataSettings.module.css';
+import cn from 'classnames';
 
 function DataSettings() {
    const [fitnessGoal, setFitnessGoal] = useState("Weight Gain");
@@ -16,7 +16,7 @@ function DataSettings() {
    const submitButton = (
       <Button
          label="Submit"
-         className='p-button-success'
+         className="p-button-success"
          onClick={submitHandler}
       />
    );
@@ -60,7 +60,7 @@ function DataSettings() {
                      inputId="weight gain"
                      value="Weight Gain"
                      onChange={(e) => setFitnessGoal(e.value)}
-                     checked={fitnessGoal === 'Weight Gain'}
+                     checked={fitnessGoal === "Weight Gain"}
                   />
                   <label htmlFor="weight gain">Weight Gain</label>
                </div>
@@ -69,7 +69,7 @@ function DataSettings() {
                      inputId="weight loss"
                      value="Weight Loss"
                      onChange={(e) => setFitnessGoal(e.value)}
-                     checked={fitnessGoal === 'Weight Loss'}
+                     checked={fitnessGoal === "Weight Loss"}
                   />
                   <label htmlFor="weight loss">Weight Loss</label>
                </div>

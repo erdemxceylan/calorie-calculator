@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-
 import consumedNutrientsReducer from './consumed-nutrients';
 import dataSettingsReducer from './data-settings';
 import pageDisplayReducer from './page-display';

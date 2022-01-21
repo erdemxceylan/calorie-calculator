@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from "./TotalValues.module.css";
-import { useSelector } from "react-redux";
+import styles from './TotalValues.module.css';
+import { useSelector } from 'react-redux';
 
 function TotalValues() {
    const totalCalories = useSelector(state => state.consumedNutrients.totalCalories);

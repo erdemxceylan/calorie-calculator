@@ -1,11 +1,11 @@
-import React from 'react'
-import { useSelector, useDispatch } from "react-redux";
-import { consumedNutrientsActions } from '../../../store/consumed-nutrients';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import TotalValues from './TotalValues';
-import styles from "./ConsumedNutrientsTable.module.css";
+import { consumedNutrientsActions } from '../../../store/consumed-nutrients';
+import styles from './ConsumedNutrientsTable.module.css';
 import cn from 'classnames';
 
 function ConsumedNutrientsTable() {

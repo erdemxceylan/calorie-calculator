@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
-import { useDispatch } from "react-redux";
 import { consumedNutrientsActions } from '../../../store/consumed-nutrients';
-import styles from "./AddNutrientMenu.module.css";
+import styles from './AddNutrientMenu.module.css';
 import cn from 'classnames';
 
-const DEFAULT_NUTRIENTS = [
-   { id: Math.random(), name: 'Kremalı Mantar Çorbası', calories: 10, proteins: 1 },
-   { id: Math.random(), name: 'Yeşil Mercimek', calories: 20, proteins: 2 },
-   { id: Math.random(), name: 'Hindi Sote', calories: 30, proteins: 3 },
-   { id: Math.random(), name: 'Pirinç Pilavı', calories: 40, proteins: 4 }
+const DUMMY_NUTRIENTS = [
+   { id: Math.random(), name: "Kremalı Mantar Çorbası", calories: 10, proteins: 1 },
+   { id: Math.random(), name: "Yeşil Mercimek", calories: 20, proteins: 2 },
+   { id: Math.random(), name: "Hindi Sote", calories: 30, proteins: 3 },
+   { id: Math.random(), name: "Pirinç Pilavı", calories: 40, proteins: 4 }
 ];
 
 function AddNutrientMenu() {
@@ -77,7 +77,7 @@ function AddNutrientMenu() {
          <Dropdown
             className={styles.dropdown}
             value={selectedNutrient}
-            options={DEFAULT_NUTRIENTS}
+            options={DUMMY_NUTRIENTS}
             onChange={onNutrientChange}
             optionLabel="name"
             filter showClear filterBy="name"
@@ -93,7 +93,7 @@ function AddNutrientMenu() {
             placeholder="quantity"
             onChange={(e) => setConsumedQuantity(e.target.value)}
          />
-         <Button label="Add" className={cn('p-button-success', styles.button)} type='submit' />
+         <Button label="Add" className={cn("p-button-success", styles.button)} type="submit" />
       </form>
    )
 };

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { TabMenu } from 'primereact/tabmenu';
 import { dataSettingsActions } from '../../store/data-settings';
 import { pageDisplayActions } from '../../store/page-display';
-import { TabMenu } from "primereact/tabmenu";
-import styles from "./Header.module.css";
+import styles from './Header.module.css';
 
 function Header() {
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 import AddNutrientMenu from './components/AddNutrientMenu';
 import ConsumedNutrientsTable from './components/ConsumedNutrientsTable';
 import styles from '../../App.module.css';
