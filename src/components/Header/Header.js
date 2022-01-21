@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { TabMenu } from 'primereact/tabmenu';
 import { dataSettingsActions } from '../../store/data-settings';
-import { pageDisplayActions } from '../../store/page-display';
+import { pageActions } from '../../store/page';
 import styles from './Header.module.css';
 
 function Header() {
@@ -21,10 +21,10 @@ function Header() {
 
       switch (event.index) {
          case 0:
-            dispatch(pageDisplayActions.showHomePage());
+            dispatch(pageActions.showHomePage());
             break;
          case 1:
-            dispatch(pageDisplayActions.showNutrientList());
+            dispatch(pageActions.showNutrientList());
             break;
          default:
             break;

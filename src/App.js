@@ -9,8 +9,8 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 
 function App() {
-  const showHomePage = useSelector(state => state.pageDisplay.showHomePage);
-  const showNutrientList = useSelector(state => state.pageDisplay.showNutrientList);
+  const showHomePage = useSelector(state => state.page.showHomePage);
+  const showNutrientList = useSelector(state => state.page.showNutrientList);
 
   return (
     <React.Fragment>

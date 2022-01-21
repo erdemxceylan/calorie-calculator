@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialPageDisplayState = {
+const initialPageState = {
    showHomePage: true,
    showNutrientList: false
 };
 
-const pageDisplaySlice = createSlice({
-   name: "page display",
-   initialState: initialPageDisplayState,
+const pageSlice = createSlice({
+   name: "page",
+   initialState: initialPageState,
    reducers: {
       showHomePage(state) {
          state.showHomePage = true;
@@ -20,6 +20,6 @@ const pageDisplaySlice = createSlice({
    }
 });
 
-export const pageDisplayActions = pageDisplaySlice.actions;
+export const pageActions = pageSlice.actions;
 
-export default pageDisplaySlice.reducer;
+export default pageSlice.reducer;
