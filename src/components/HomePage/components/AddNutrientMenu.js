@@ -90,7 +90,7 @@ function AddNutrientMenu() {
             value={consumedQuantity}
             type="number"
             min={1}
-            placeholder="birim"
+            placeholder="quantity"
             onChange={(e) => setConsumedQuantity(e.target.value)}
          />
          <Button label="Add" className={cn('p-button-success', styles.button)} type='submit' />

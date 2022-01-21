@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from "react-redux";
-import { consumedNutrientsActions } from '../../store/consumed-nutrients';
+import { consumedNutrientsActions } from '../../../store/consumed-nutrients';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
