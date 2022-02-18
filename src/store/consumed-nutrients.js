@@ -19,6 +19,7 @@ const consumedNutrientsSlice = createSlice({
             const updatedNutrient = {
                id: existingNutrient.id,
                name: existingNutrient.name,
+               unit: existingNutrient.unit,
                consumedQuantity: +existingNutrient.consumedQuantity + +action.payload.consumedQuantity,
                caloriesTaken: existingNutrient.caloriesTaken + action.payload.caloriesTaken,
                proteinsTaken: existingNutrient.proteinsTaken + action.payload.proteinsTaken
@@ -45,6 +46,7 @@ const consumedNutrientsSlice = createSlice({
             const updatedNutrient = {
                id: existingNutrient.id,
                name: existingNutrient.name,
+               unit: existingNutrient.unit,
                consumedQuantity: action.payload.consumedQuantity,
                caloriesTaken: action.payload.caloriesTaken,
                proteinsTaken: action.payload.proteinsTaken

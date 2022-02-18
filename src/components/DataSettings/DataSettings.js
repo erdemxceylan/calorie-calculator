@@ -9,7 +9,7 @@ import styles from './DataSettings.module.css';
 import cn from 'classnames';
 
 function DataSettings() {
-   const [fitnessGoal, setFitnessGoal] = useState("Weight Gain");
+   const [fitnessGoal, setFitnessGoal] = useState('Weight Gain');
    const showDataSettings = useSelector(state => state.dataSettings.showDataSettings);
    const dispatch = useDispatch();
 
@@ -23,7 +23,7 @@ function DataSettings() {
 
    function submitHandler(event) {
       event.preventDefault();
-      console.log("Submitting..");
+      console.log('Submitting..');
    }
 
    function closeHandler() {
@@ -76,7 +76,7 @@ function DataSettings() {
             </div>
          </div>
       </Dialog>
-   )
+   );
 }
 
 export default DataSettings;

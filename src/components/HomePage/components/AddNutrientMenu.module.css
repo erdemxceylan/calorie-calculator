@@ -10,8 +10,12 @@
   width: 100%;
 }
 
-.input {
+.span {
   margin: 0.5rem !important;
+  width: 100%;
+}
+
+.span > input {
   width: 100%;
 }
 
@@ -30,7 +34,7 @@
     width: 55%;
   }
 
-  .input {
+  .span {
     width: 20%;
   }
 

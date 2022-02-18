@@ -14,21 +14,21 @@ function ConsumedNutrientsTable() {
    const dispatch = useDispatch();
 
    const consumedNutrientsTableColumns = [
-      { field: "name", header: "Name" },
-      { field: "consumedQuantity", header: "Quantity" },
-      { field: "caloriesTaken", header: "Calories" },
-      { field: "proteinsTaken", header: "Proteins" }
+      { field: 'name', header: 'Name' },
+      { field: 'consumedQuantity', header: 'Quantity' },
+      { field: 'caloriesTaken', header: 'Calories' },
+      { field: 'proteinsTaken', header: 'Proteins' }
    ];
 
    function labelField(rowData, field) {
       switch (field) {
-         case "caloriesTaken":
-            return rowData.caloriesTaken + " kcal";
-         case "proteinsTaken":
-            return rowData.proteinsTaken + " gram";
-         case "consumedQuantity":
-            return rowData.consumedQuantity + " birim";
-         case "name":
+         case 'caloriesTaken':
+            return rowData.caloriesTaken.toFixed(2) + ' kcal';
+         case 'proteinsTaken':
+            return rowData.proteinsTaken.toFixed(2) + ' gram';
+         case 'consumedQuantity':
+            return `${rowData.consumedQuantity} ${rowData.unit}`;
+         case 'name':
             return rowData.name;
          default:
             return;
@@ -64,7 +64,7 @@ function ConsumedNutrientsTable() {
             id: rowData.id,
             calories: rowData.caloriesTaken,
             proteins: rowData.proteinsTaken
-         }
+         };
          dispatch(consumedNutrientsActions.deleteConsumedNutrient(eraseData));
       } else {
          originalEvent.preventDefault();
@@ -89,19 +89,19 @@ function ConsumedNutrientsTable() {
                      body={rowData => labelField(rowData, field)}
                      editor={options => textEditor(options)}
                      onCellEditComplete={cellEditCompletionHandler}
-                  />
+                  />;
                } else {
                   return <Column
                      key={field}
                      field={field}
                      header={header}
                      body={rowData => labelField(rowData, field)}
-                  />
+                  />;
                }
             })}
          </DataTable>
       </div>
-   )
+   );
 }
 
 export default ConsumedNutrientsTable;

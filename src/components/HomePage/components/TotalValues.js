@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import styles from './TotalValues.module.css';
 
 function TotalValues() {
-   const totalCalories = useSelector(state => state.consumedNutrients.totalCalories);
-   const totalProteins = useSelector(state => state.consumedNutrients.totalProteins);
+   const totalCalories = useSelector(state => state.consumedNutrients.totalCalories).toFixed(2);
+   const totalProteins = useSelector(state => state.consumedNutrients.totalProteins).toFixed(2);
 
    return (
       <React.Fragment>
@@ -29,7 +29,7 @@ function TotalValues() {
             </div>
          </div>
       </React.Fragment>
-   )
+   );
 }
 
 export default TotalValues;
