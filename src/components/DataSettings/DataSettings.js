@@ -9,7 +9,7 @@ import styles from './DataSettings.module.css';
 import cn from 'classnames';
 
 function DataSettings() {
-   const [fitnessGoal, setFitnessGoal] = useState('Weight Gain');
+   const [enteredFitnessTarget, setEnteredFitnessTarget] = useState('Weight Gain');
    const showDataSettings = useSelector(state => state.dataSettings.showDataSettings);
    const dispatch = useDispatch();
 
@@ -59,8 +59,8 @@ function DataSettings() {
                   <RadioButton
                      inputId="weight gain"
                      value="Weight Gain"
-                     onChange={(e) => setFitnessGoal(e.value)}
-                     checked={fitnessGoal === "Weight Gain"}
+                     onChange={(e) => setEnteredFitnessTarget(e.value)}
+                     checked={enteredFitnessTarget === "Weight Gain"}
                   />
                   <label htmlFor="weight gain">Weight Gain</label>
                </div>
@@ -68,8 +68,8 @@ function DataSettings() {
                   <RadioButton
                      inputId="weight loss"
                      value="Weight Loss"
-                     onChange={(e) => setFitnessGoal(e.value)}
-                     checked={fitnessGoal === "Weight Loss"}
+                     onChange={(e) => setEnteredFitnessTarget(e.value)}
+                     checked={enteredFitnessTarget === "Weight Loss"}
                   />
                   <label htmlFor="weight loss">Weight Loss</label>
                </div>

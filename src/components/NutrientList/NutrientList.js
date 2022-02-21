@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from '../../App.module.css';
-// import getNutrients from '../../database/nutrients';
 import nutrients from '../../database/nutrients';
 
 function NutrientList() {
