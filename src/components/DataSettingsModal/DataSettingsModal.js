@@ -8,6 +8,9 @@ import { dataSettingsModalActions } from '../../global/redux/data-settings-modal
 import styles from './DataSettingsModal.module.css';
 import cn from 'classnames';
 
+const WEIGHT_GAIN = 'Weight Gain';
+const WEIGHT_LOSS = 'Weight Loss';
+
 function DataSettings() {
    const [enteredFitnessGoal, setEnteredFitnessTarget] = useState('Weight Gain');
    const showDataSettings = useSelector(state => state.dataSettings.showDataSettings);
@@ -64,21 +67,21 @@ function DataSettings() {
                <h4>Fitness Goal</h4>
                <div className="p-field-radiobutton">
                   <RadioButton
-                     inputId="weight gain"
-                     value="Weight Gain"
+                     inputId={WEIGHT_GAIN}
+                     value={WEIGHT_GAIN}
                      onChange={(e) => setEnteredFitnessTarget(e.value)}
-                     checked={enteredFitnessGoal === "Weight Gain"}
+                     checked={enteredFitnessGoal === WEIGHT_GAIN}
                   />
-                  <label htmlFor="weight gain">Weight Gain</label>
+                  <label htmlFor={WEIGHT_GAIN}>{WEIGHT_GAIN}</label>
                </div>
                <div className="p-field-radiobutton">
                   <RadioButton
-                     inputId="weight loss"
-                     value="Weight Loss"
+                     inputId={WEIGHT_LOSS}
+                     value={WEIGHT_LOSS}
                      onChange={(e) => setEnteredFitnessTarget(e.value)}
-                     checked={enteredFitnessGoal === "Weight Loss"}
+                     checked={enteredFitnessGoal === WEIGHT_LOSS}
                   />
-                  <label htmlFor="weight loss">Weight Loss</label>
+                  <label htmlFor={WEIGHT_LOSS}>{WEIGHT_LOSS}</label>
                </div>
             </div>
          </div>
