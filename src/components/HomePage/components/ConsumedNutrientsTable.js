@@ -4,7 +4,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import TotalValues from './TotalValues';
-import { consumedNutrientsActions } from '../../../store/consumed-nutrients';
+import { consumedNutrientsActions } from '../../../global/redux/consumed-nutrients';
 import styles from './ConsumedNutrientsTable.module.css';
 import cn from 'classnames';
 

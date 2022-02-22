@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { TabMenu } from 'primereact/tabmenu';
-import { dataSettingsActions } from '../../store/data-settings';
-import { pageActions } from '../../store/page';
+import { dataSettingsModalActions } from '../../global/redux/data-settings-modal';
+import { pageActions } from '../../global/redux/page';
 import styles from './Header.module.css';
 
 function Header() {
@@ -31,9 +31,9 @@ function Header() {
       }
 
       if (event.index === 2) {
-         dispatch(dataSettingsActions.show());
+         dispatch(dataSettingsModalActions.show());
       } else {
-         dispatch(dataSettingsActions.hide());
+         dispatch(dataSettingsModalActions.hide());
       }
    }
 

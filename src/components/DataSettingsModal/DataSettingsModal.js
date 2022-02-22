@@ -4,8 +4,8 @@ import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { RadioButton } from 'primereact/radiobutton';
 import { Button } from 'primereact/button';
-import { dataSettingsActions } from '../../store/data-settings';
-import styles from './DataSettings.module.css';
+import { dataSettingsModalActions } from '../../global/redux/data-settings-modal';
+import styles from './DataSettingsModal.module.css';
 import cn from 'classnames';
 
 function DataSettings() {
@@ -27,7 +27,7 @@ function DataSettings() {
    }
 
    function closeHandler() {
-      dispatch(dataSettingsActions.hide());
+      dispatch(dataSettingsModalActions.hide());
    }
 
    return (

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
-import { consumedNutrientsActions } from '../../../store/consumed-nutrients';
+import { consumedNutrientsActions } from '../../../global/redux/consumed-nutrients';
 import axios from 'axios';
 import styles from './AddNutrientMenu.module.css';
 import cn from 'classnames';

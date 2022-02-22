@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import consumedNutrientsReducer from './consumed-nutrients';
-import dataSettingsReducer from './data-settings';
+import dataSettingsModalReducer from './data-settings-modal';
 import pageReducer from './page';
 
 const store = configureStore({
    reducer: {
       consumedNutrients: consumedNutrientsReducer,
-      dataSettings: dataSettingsReducer,
+      dataSettings: dataSettingsModalReducer,
       page: pageReducer
    },
 });
