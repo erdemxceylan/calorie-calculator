@@ -10,12 +10,12 @@ export function DatabaseContextProvider(props) {
     const [nutrients, setNutrients] = useState([]);
     const [dailyTargetValues, setDailyTargetValues] = useState({});
 
-    useEffect(async () => {
-        await axios.get('http://localhost:8080/nutrients')
+    useEffect(() => {
+        axios.get('http://localhost:8080/nutrients')
             .then(response => setNutrients(response.data))
             .catch(error => console.log(error));
 
-        await axios.get('http://localhost:8080/settings')
+        axios.get('http://localhost:8080/settings')
             .then(response => setDailyTargetValues(response.data))
             .catch(error => console.log(error));
     }, []);

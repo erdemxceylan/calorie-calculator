@@ -7,33 +7,68 @@ function TotalValues() {
    const totalCalories = useSelector(state => state.consumedNutrients.totalCalories).toFixed(2);
    const totalProteins = useSelector(state => state.consumedNutrients.totalProteins).toFixed(2);
    const databaseContext = useContext(DatabaseContext);
-   const calorieStatus = `${totalCalories} /
-                          ${databaseContext.dailyTargetValues.dailyCalorieTargetLowerBound} -
-                          ${databaseContext.dailyTargetValues.dailyCalorieTargetUpperBound} kcal`;
-   const proteinStatus = `${totalProteins} / ${databaseContext.dailyTargetValues.dailyProteinNeed} gram`;
+   const dailyCalorieTargetLowerBound = databaseContext.dailyTargetValues.dailyCalorieTargetLowerBound;
+   const dailyCalorieTargetUpperBound = databaseContext.dailyTargetValues.dailyCalorieTargetUpperBound;
+   const dailyProteinNeed = databaseContext.dailyTargetValues.dailyProteinNeed;
+
+   const dailyCalorieTargetInterval = `${dailyCalorieTargetLowerBound} - ${dailyCalorieTargetUpperBound}`;
+
+   let totalCaloriesLabelStyle;
+
+   if (
+      totalCalories >= dailyCalorieTargetLowerBound &&
+      totalCalories <= dailyCalorieTargetUpperBound
+   ) {
+      totalCaloriesLabelStyle = styles.success;
+   } else if (totalCalories > dailyCalorieTargetUpperBound) {
+      totalCaloriesLabelStyle = styles.excess;
+   } else {
+      totalCaloriesLabelStyle = null;
+   }
+
+   const totalProteinsLabelStyle = totalProteins >= dailyProteinNeed ? styles.success : null;
 
    return (
       <React.Fragment>
+
          <div className={styles.mobile}>
             <div>
-               <h3>Calories: </h3>
-               <p>{calorieStatus}</p>
+               <h4>Calories Taken</h4>
+               <p className={totalCaloriesLabelStyle}>{totalCalories} kcal</p>
+               <h4>Target</h4>
+               <p>{dailyCalorieTargetInterval} kcal</p>
             </div>
             <div>
-               <h3>Proteins: </h3>
-               <p>{proteinStatus}</p>
+               <h4>Proteins Taken</h4>
+               <p className={totalProteinsLabelStyle}>{totalProteins} gram</p>
+               <h4>Target</h4>
+               <p>{dailyProteinNeed} gram</p>
             </div>
          </div>
+
          <div className={styles.desktop}>
             <div className={styles.group}>
-               <h3>Calories: </h3>
-               <p>{calorieStatus}</p>
+               <div className={styles['group-unit']}>
+                  <h4>Calories Taken: </h4>
+                  <p className={totalCaloriesLabelStyle}>{totalCalories} kcal</p>
+               </div>
+               <div className={styles['group-unit']}>
+                  <h4>Target: </h4>
+                  <p>{dailyCalorieTargetInterval} kcal</p>
+               </div>
             </div>
             <div className={styles.group}>
-               <h3>Proteins: </h3>
-               <p>{proteinStatus}</p>
+               <div className={styles['group-unit']}>
+                  <h4>Proteins Taken: </h4>
+                  <p className={totalProteinsLabelStyle}>{totalProteins} gram</p>
+               </div>
+               <div className={styles['group-unit']}>
+                  <h4>Target: </h4>
+                  <p>{dailyProteinNeed} gram</p>
+               </div>
             </div>
          </div>
+
       </React.Fragment>
    );
 }

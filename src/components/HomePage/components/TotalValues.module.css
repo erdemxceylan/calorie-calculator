@@ -1,3 +1,7 @@
+.desktop {
+  display: none;
+}
+
 .mobile {
   margin: 0.5rem;
   display: flex;
@@ -6,23 +10,28 @@
   align-content: center;
 }
 
-.mobile h3,
-.desktop h3 {
-  margin: 0.25rem;
+.mobile h4,
+.desktop h4 {
+  margin: 0;
   padding: 0.25rem;
   color: lightseagreen;
+  text-align: center;
 }
 
 .mobile p,
 .desktop p {
-  margin: 0.25rem;
+  margin: 0;
   padding: 0.25rem;
   color: grey;
   text-align: center;
 }
 
-.desktop {
-  display: none;
+.success {
+  color: #22c55e !important;
+}
+
+.excess {
+  color: #ff2020 !important;
 }
 
 @media (min-width: 36rem) {
@@ -38,5 +47,14 @@
 
   .group {
     display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .group-unit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

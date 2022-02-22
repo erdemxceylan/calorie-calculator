@@ -6,7 +6,6 @@ import { pageActions } from '../../global/redux/page';
 import styles from './Header.module.css';
 
 function Header() {
-
    const [activeIndex, setActiveIndex] = useState(0);
    const dispatch = useDispatch();
 
