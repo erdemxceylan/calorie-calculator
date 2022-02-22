@@ -1,25 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { consumedNutrientsActions } from '../../../global/redux/consumed-nutrients';
-import axios from 'axios';
+import DatabaseContext from '../../../global/context/database-context';
 import styles from './AddNutrientMenu.module.css';
 import cn from 'classnames';
 
 function AddNutrientMenu() {
-   const [nutrients, setNutrients] = useState([]);
+   const databaseContext = useContext(DatabaseContext);
    const [selectedNutrient, setSelectedNutrient] = useState(null);
    const [consumedQuantity, setConsumedQuantity] = useState('');
 
    const dispatch = useDispatch();
-
-   useEffect(() => {
-      axios.get('http://localhost:8080/nutrients')
-         .then(response => setNutrients(response.data))
-         .catch(error => console.log(error));
-   }, []);
 
    function submitHandler(event) {
       event.preventDefault();
@@ -46,7 +40,7 @@ function AddNutrientMenu() {
          <Dropdown
             className={styles.dropdown}
             value={selectedNutrient}
-            options={nutrients}
+            options={databaseContext.nutrients}
             onChange={e => setSelectedNutrient(e.target.value)}
             optionLabel="name"
             filter showClear filterBy="name"

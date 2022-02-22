@@ -1,22 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useContext } from 'react';
+import DatabaseContext from '../../global/context/database-context';
 import styles from '../../App.module.css';
 
 function NutrientList() {
-   const [nutrients, setNutrients] = useState([]);
-   const [isLoading, setIsLoading] = useState(false);
-
-   useEffect(async () => {
-      setIsLoading(true);
-      const response = await axios.get('http://localhost:8080/nutrients');
-      setNutrients(response.data);
-      setIsLoading(false);
-   }, []);
+   const databaseContext = useContext(DatabaseContext);
 
    return (
       <div className={styles["page-layout"]}>
-         {isLoading && <p>Loading...</p>}
-         {!isLoading && nutrients.map(nutrient => (
+         {databaseContext.nutrients.map(nutrient => (
             <div key={nutrient.id}>
                <h2>{nutrient.name}</h2>
                <p>{nutrient.id}</p>

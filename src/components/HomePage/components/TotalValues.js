@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
+import DatabaseContext from '../../../global/context/database-context';
 import styles from './TotalValues.module.css';
 
 function TotalValues() {
-   const [dailyTargetValues, setDailyTargetValues] = useState({});
    const totalCalories = useSelector(state => state.consumedNutrients.totalCalories).toFixed(2);
    const totalProteins = useSelector(state => state.consumedNutrients.totalProteins).toFixed(2);
+   const databaseContext = useContext(DatabaseContext);
    const calorieStatus = `${totalCalories} /
-                          ${dailyTargetValues.dailyCalorieTargetLowerBound} -
-                          ${dailyTargetValues.dailyCalorieTargetUpperBound} kcal`;
-   const proteinStatus = `${totalProteins} / ${dailyTargetValues.dailyProteinNeed} gram`;
-
-   useEffect(async () => {
-      await axios.get('http://localhost:8080/settings')
-         .then(response => setDailyTargetValues(response.data));
-   }, []);
+                          ${databaseContext.dailyTargetValues.dailyCalorieTargetLowerBound} -
+                          ${databaseContext.dailyTargetValues.dailyCalorieTargetUpperBound} kcal`;
+   const proteinStatus = `${totalProteins} / ${databaseContext.dailyTargetValues.dailyProteinNeed} gram`;
 
    return (
       <React.Fragment>
