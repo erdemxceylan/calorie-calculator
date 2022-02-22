@@ -9,7 +9,7 @@ import styles from './DataSettings.module.css';
 import cn from 'classnames';
 
 function DataSettings() {
-   const [enteredFitnessTarget, setEnteredFitnessTarget] = useState('Weight Gain');
+   const [enteredFitnessGoal, setEnteredFitnessTarget] = useState('Weight Gain');
    const showDataSettings = useSelector(state => state.dataSettings.showDataSettings);
    const dispatch = useDispatch();
 
@@ -49,6 +49,13 @@ function DataSettings() {
             <InputText
                type="number"
                min={1}
+               max={1000}
+               placeholder="Weight (kg)"
+            //   value={}
+            />
+            <InputText
+               type="number"
+               min={1}
                max={100}
                placeholder="Fat Ratio (%)"
             //   value={}
@@ -60,7 +67,7 @@ function DataSettings() {
                      inputId="weight gain"
                      value="Weight Gain"
                      onChange={(e) => setEnteredFitnessTarget(e.value)}
-                     checked={enteredFitnessTarget === "Weight Gain"}
+                     checked={enteredFitnessGoal === "Weight Gain"}
                   />
                   <label htmlFor="weight gain">Weight Gain</label>
                </div>
@@ -69,7 +76,7 @@ function DataSettings() {
                      inputId="weight loss"
                      value="Weight Loss"
                      onChange={(e) => setEnteredFitnessTarget(e.value)}
-                     checked={enteredFitnessTarget === "Weight Loss"}
+                     checked={enteredFitnessGoal === "Weight Loss"}
                   />
                   <label htmlFor="weight loss">Weight Loss</label>
                </div>

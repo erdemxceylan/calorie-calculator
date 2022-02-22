@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { consumedNutrientsActions } from '../../../store/consumed-nutrients';
-import nutrients from '../../../database/nutrients';
+import axios from 'axios';
 import styles from './AddNutrientMenu.module.css';
 import cn from 'classnames';
 
 function AddNutrientMenu() {
+   const [nutrients, setNutrients] = useState([]);
+   const [selectedNutrient, setSelectedNutrient] = useState(null);
+   const [consumedQuantity, setConsumedQuantity] = useState('');
 
    const dispatch = useDispatch();
 
-   const [selectedNutrient, setSelectedNutrient] = useState(null);
-   const [consumedQuantity, setConsumedQuantity] = useState('');
+   useEffect(() => {
+      axios.get('http://localhost:8080/nutrients')
+         .then(response => setNutrients(response.data))
+         .catch(error => console.log(error));
+   }, []);
 
    function submitHandler(event) {
       event.preventDefault();
