@@ -16,6 +16,15 @@ function DataSettings() {
    const showDataSettings = useSelector(state => state.dataSettings.showDataSettings);
    const dispatch = useDispatch();
 
+   function closeHandler() {
+      dispatch(dataSettingsModalActions.hide());
+   }
+
+   function submitHandler(event) {
+      event.preventDefault();
+      console.log('Submitting..');
+   }
+
    const submitButton = (
       <Button
          label="Submit"
@@ -24,14 +33,56 @@ function DataSettings() {
       />
    );
 
-   function submitHandler(event) {
-      event.preventDefault();
-      console.log('Submitting..');
-   }
+   const fitnessGoalRadioButtons = (
+      <div className={styles.radio}>
+         <h4>Fitness Goal</h4>
+         <div className="p-field-radiobutton">
+            <RadioButton
+               inputId={WEIGHT_GAIN}
+               value={WEIGHT_GAIN}
+               onChange={(e) => setEnteredFitnessGoal(e.value)}
+               checked={enteredFitnessGoal === WEIGHT_GAIN}
+            />
+            <label htmlFor={WEIGHT_GAIN}>{WEIGHT_GAIN}</label>
+         </div>
+         <div className="p-field-radiobutton">
+            <RadioButton
+               inputId={WEIGHT_LOSS}
+               value={WEIGHT_LOSS}
+               onChange={(e) => setEnteredFitnessGoal(e.value)}
+               checked={enteredFitnessGoal === WEIGHT_LOSS}
+            />
+            <label htmlFor={WEIGHT_LOSS}>{WEIGHT_LOSS}</label>
+         </div>
+      </div>
+   );
 
-   function closeHandler() {
-      dispatch(dataSettingsModalActions.hide());
-   }
+   const modalContent = (
+      <div className={cn("p-fluid", styles.content)}>
+         <InputText
+            type="number"
+            min={1}
+            max={100000}
+            placeholder="Daily Calorie Need (kcal)"
+         //   value={}
+         />
+         <InputText
+            type="number"
+            min={1}
+            max={1000}
+            placeholder="Weight (kg)"
+         //   value={}
+         />
+         <InputText
+            type="number"
+            min={1}
+            max={100}
+            placeholder="Fat Ratio (%)"
+         //   value={}
+         />
+         {fitnessGoalRadioButtons}
+      </div>
+   );
 
    return (
       <Dialog
@@ -41,50 +92,7 @@ function DataSettings() {
          onHide={closeHandler}
          footer={submitButton}
       >
-         <div className={cn("p-fluid", styles.content)}>
-            <InputText
-               type="number"
-               min={1}
-               max={100000}
-               placeholder="Daily Calorie Need (kcal)"
-            //   value={}
-            />
-            <InputText
-               type="number"
-               min={1}
-               max={1000}
-               placeholder="Weight (kg)"
-            //   value={}
-            />
-            <InputText
-               type="number"
-               min={1}
-               max={100}
-               placeholder="Fat Ratio (%)"
-            //   value={}
-            />
-            <div className={styles.radio}>
-               <h4>Fitness Goal</h4>
-               <div className="p-field-radiobutton">
-                  <RadioButton
-                     inputId={WEIGHT_GAIN}
-                     value={WEIGHT_GAIN}
-                     onChange={(e) => setEnteredFitnessGoal(e.value)}
-                     checked={enteredFitnessGoal === WEIGHT_GAIN}
-                  />
-                  <label htmlFor={WEIGHT_GAIN}>{WEIGHT_GAIN}</label>
-               </div>
-               <div className="p-field-radiobutton">
-                  <RadioButton
-                     inputId={WEIGHT_LOSS}
-                     value={WEIGHT_LOSS}
-                     onChange={(e) => setEnteredFitnessGoal(e.value)}
-                     checked={enteredFitnessGoal === WEIGHT_LOSS}
-                  />
-                  <label htmlFor={WEIGHT_LOSS}>{WEIGHT_LOSS}</label>
-               </div>
-            </div>
-         </div>
+         {modalContent}
       </Dialog>
    );
 }
