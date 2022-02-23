@@ -12,7 +12,7 @@ const WEIGHT_GAIN = 'Weight Gain';
 const WEIGHT_LOSS = 'Weight Loss';
 
 function DataSettings() {
-   const [enteredFitnessGoal, setEnteredFitnessTarget] = useState('Weight Gain');
+   const [enteredFitnessGoal, setEnteredFitnessGoal] = useState(WEIGHT_GAIN);
    const showDataSettings = useSelector(state => state.dataSettings.showDataSettings);
    const dispatch = useDispatch();
 
@@ -69,7 +69,7 @@ function DataSettings() {
                   <RadioButton
                      inputId={WEIGHT_GAIN}
                      value={WEIGHT_GAIN}
-                     onChange={(e) => setEnteredFitnessTarget(e.value)}
+                     onChange={(e) => setEnteredFitnessGoal(e.value)}
                      checked={enteredFitnessGoal === WEIGHT_GAIN}
                   />
                   <label htmlFor={WEIGHT_GAIN}>{WEIGHT_GAIN}</label>
@@ -78,7 +78,7 @@ function DataSettings() {
                   <RadioButton
                      inputId={WEIGHT_LOSS}
                      value={WEIGHT_LOSS}
-                     onChange={(e) => setEnteredFitnessTarget(e.value)}
+                     onChange={(e) => setEnteredFitnessGoal(e.value)}
                      checked={enteredFitnessGoal === WEIGHT_LOSS}
                   />
                   <label htmlFor={WEIGHT_LOSS}>{WEIGHT_LOSS}</label>
