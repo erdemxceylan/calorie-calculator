@@ -3,12 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
 import DataSettingsForm from './components/DataSettingsForm';
+import useHttpRequest from '../../hooks/use-http-request';
 import { dataSettingsModalActions } from '../../global/redux/data-settings-modal';
 import styles from './DataSettingsModal.module.css';
 
 function DataSettings() {
    const showDataSettings = useSelector(state => state.dataSettings.showDataSettings);
    const dispatch = useDispatch();
+   const { isLoading, error, sendRequest } = useHttpRequest();
    let formData = {};
 
    function closeHandler() {
@@ -34,12 +36,21 @@ function DataSettings() {
 
       if (!formData.isValid) return;
 
-      console.log({
-         dailyCalorieNeed: formData.dailyCalorieNeed,
-         weight: formData.weight,
-         fatRatio: formData.fatRatio,
-         fitnessGoal: formData.fitnessGoal
+      sendRequest({
+         url: 'https://graduation-project-7c908-default-rtdb.europe-west1.firebasedatabase.app/settings.json',
+         method: 'PUT',
+         body: {
+            'uniqueKey': {
+               dailyCalorieNeed: formData.dailyCalorieNeed,
+               weight: formData.weight,
+               fatRatio: formData.fatRatio,
+               fitnessGoal: formData.fitnessGoal
+            }
+         }
       });
+
+      console.log(isLoading);
+      console.log(error);
 
       formData.reset();
    }
