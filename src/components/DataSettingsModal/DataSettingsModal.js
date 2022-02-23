@@ -31,8 +31,17 @@ function DataSettings() {
 
    function submitHandler(event) {
       event.preventDefault();
-      console.log('Submitting..');
-      console.log(formData);
+
+      if (!formData.isValid) return;
+
+      console.log({
+         dailyCalorieNeed: formData.dailyCalorieNeed,
+         weight: formData.weight,
+         fatRatio: formData.fatRatio,
+         fitnessGoal: formData.fitnessGoal
+      });
+
+      formData.reset();
    }
 
    const submitButton = (
