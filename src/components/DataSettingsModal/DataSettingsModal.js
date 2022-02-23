@@ -2,11 +2,9 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
-import DataSettingsInputs from './components/DataSettingsInputs';
-import FitnessGoalSelection from './components/FitnessGoalSelection';
+import DataSettingsForm from './components/DataSettingsForm';
 import { dataSettingsModalActions } from '../../global/redux/data-settings-modal';
 import styles from './DataSettingsModal.module.css';
-import cn from 'classnames';
 
 function DataSettings() {
    const showDataSettings = useSelector(state => state.dataSettings.showDataSettings);
@@ -37,10 +35,7 @@ function DataSettings() {
          onHide={closeHandler}
          footer={submitButton}
       >
-         <div className={cn("p-fluid", styles.content)}>
-            <DataSettingsInputs />
-            <FitnessGoalSelection />
-         </div>
+         <DataSettingsForm />
       </Dialog>
    );
 }
