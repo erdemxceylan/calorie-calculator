@@ -9,14 +9,30 @@ import styles from './DataSettingsModal.module.css';
 function DataSettings() {
    const showDataSettings = useSelector(state => state.dataSettings.showDataSettings);
    const dispatch = useDispatch();
+   let formData = {};
 
    function closeHandler() {
       dispatch(dataSettingsModalActions.hide());
    }
 
+   function getInputData(inputData) {
+      formData.reset = inputData.resetForm;
+      formData.isValid = inputData.isFormValid;
+      if (formData.isValid) {
+         formData.dailyCalorieNeed = Number(inputData.enteredValues.dailyCalorieNeed);
+         formData.weight = Number(inputData.enteredValues.weight);
+         formData.fatRatio = Number(inputData.enteredValues.fatRatio);
+      }
+   }
+
+   function getFitnessGoal(goal) {
+      formData.fitnessGoal = goal;
+   }
+
    function submitHandler(event) {
       event.preventDefault();
       console.log('Submitting..');
+      console.log(formData);
    }
 
    const submitButton = (
@@ -35,7 +51,7 @@ function DataSettings() {
          onHide={closeHandler}
          footer={submitButton}
       >
-         <DataSettingsForm />
+         <DataSettingsForm sendInputData={getInputData} sendFitnessGoal={getFitnessGoal} />
       </Dialog>
    );
 }

@@ -8,6 +8,8 @@ const WEIGHT_LOSS = 'Weight Loss';
 function FitnessGoalSelection(props) {
    const [enteredFitnessGoal, setEnteredFitnessGoal] = useState(WEIGHT_GAIN);
 
+   props.sendFitnessGoal(enteredFitnessGoal);
+
    return (
       <div className={styles.radio}>
          <h4>Fitness Goal</h4>

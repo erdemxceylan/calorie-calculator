@@ -52,7 +52,15 @@ function DataSettingsInputs(props) {
       resetEnteredFatRatio();
    };
 
-   props.onSubmit(areInputsValid, resetInputs);
+   props.sendInputData({
+      enteredValues: {
+         dailyCalorieNeed: enteredDailyCalorieNeed,
+         weight: enteredWeight,
+         fatRatio: enteredFatRatio
+      },
+      isFormValid: areInputsValid,
+      resetForm: resetInputs
+   });
 
    return (
       <React.Fragment>
