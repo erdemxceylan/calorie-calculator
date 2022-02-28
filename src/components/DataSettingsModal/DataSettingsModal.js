@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
 import DataSettingsForm from './components/DataSettingsForm';
@@ -50,11 +49,7 @@ function DataSettings() {
                fitnessGoal: formData.fitnessGoal
             }
          }
-      }, () => {
-         axios.get('http://localhost:8080/settings')
-            .then(response => databaseContext.setDailyTargetValues(response.data))
-            .catch(error => console.log(error));
-      });
+      }, databaseContext.updateDailyTargetValues);
 
       console.log(isLoading);
       console.log(error);
