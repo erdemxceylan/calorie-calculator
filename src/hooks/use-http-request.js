@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import axios from 'axios';
 
 function useHttpRequest() {
    const [isLoading, setIsLoading] = useState(false);
@@ -7,20 +8,30 @@ function useHttpRequest() {
    const sendRequest = useCallback(async (requestConfig, applyData) => {
       setIsLoading(true);
       setError(null);
-      try {
-         const response = await fetch(requestConfig.url, {
-            method: requestConfig.method ? requestConfig.method : 'GET',
-            headers: requestConfig.headers ? requestConfig.headers : {},
-            body: requestConfig.body ? JSON.stringify(requestConfig.body) : null,
-         });
+      const method = requestConfig.method ? requestConfig.method : 'GET';
+      const body = requestConfig.body ? requestConfig.body : null;
+      let response;
 
-         if (!response.ok) {
+      try {
+         switch (method) {
+            case 'GET':
+               response = await axios.get(requestConfig.url);
+               break;
+            case 'POST':
+               response = await axios.post(requestConfig.url, body);
+               break;
+            case 'PUT':
+               response = await axios.put(requestConfig.url, body);
+               break;
+            default:
+               break;
+         }
+
+         if (response.statusText !== 'OK') {
             throw new Error('Request failed!');
          }
 
-         const data = await response.json();
-
-         if (applyData) applyData(data);
+         if (applyData) applyData(response.data);
       } catch (err) {
          setError(err.message || 'Something went wrong!');
       }

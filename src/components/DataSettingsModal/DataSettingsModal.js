@@ -12,7 +12,7 @@ function DataSettings() {
    const showDataSettings = useSelector(state => state.dataSettings.showDataSettings);
    const dispatch = useDispatch();
    const databaseContext = useContext(DatabaseContext);
-   const { isLoading, error, sendRequest } = useHttpRequest();
+   const { error, sendRequest } = useHttpRequest();
    let formData = {};
 
    function closeHandler() {
@@ -39,22 +39,20 @@ function DataSettings() {
       if (!formData.isValid) return;
 
       sendRequest({
-         url: 'https://graduation-project-7c908-default-rtdb.europe-west1.firebasedatabase.app/settings.json',
+         url: 'http://localhost:8080/send-settings',
          method: 'PUT',
          body: {
-            'uniqueKey': {
-               dailyCalorieNeed: formData.dailyCalorieNeed,
-               weight: formData.weight,
-               fatRatio: formData.fatRatio,
-               fitnessGoal: formData.fitnessGoal
-            }
+            dailyCalorieNeed: formData.dailyCalorieNeed,
+            weight: formData.weight,
+            fatRatio: formData.fatRatio,
+            fitnessGoal: formData.fitnessGoal
          }
       }, databaseContext.updateDailyTargetValues);
 
-      console.log(isLoading);
-      console.log(error);
+      if (error) console.log(error);
 
       formData.reset();
+      closeHandler();
    }
 
    const submitButton = (
