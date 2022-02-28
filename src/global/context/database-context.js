@@ -3,7 +3,8 @@ import axios from 'axios';
 
 const DatabaseContext = React.createContext({
     nutrients: [],
-    dailyTargetValues: {}
+    dailyTargetValues: {},
+    setDailyTargetValues: function () { }
 });
 
 export function DatabaseContextProvider(props) {
@@ -21,7 +22,11 @@ export function DatabaseContextProvider(props) {
     }, []);
 
     return (
-        <DatabaseContext.Provider value={{ nutrients, dailyTargetValues }}>
+        <DatabaseContext.Provider value={{
+            nutrients,
+            dailyTargetValues,
+            setDailyTargetValues
+        }}>
             {props.children}
         </DatabaseContext.Provider>
     );

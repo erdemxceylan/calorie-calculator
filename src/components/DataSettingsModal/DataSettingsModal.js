@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
 import DataSettingsForm from './components/DataSettingsForm';
 import useHttpRequest from '../../hooks/use-http-request';
 import { dataSettingsModalActions } from '../../global/redux/data-settings-modal';
+import DatabaseContext from '../../global/context/database-context';
 import styles from './DataSettingsModal.module.css';
 
 function DataSettings() {
    const showDataSettings = useSelector(state => state.dataSettings.showDataSettings);
    const dispatch = useDispatch();
+   const databaseContext = useContext(DatabaseContext);
    const { isLoading, error, sendRequest } = useHttpRequest();
    let formData = {};
 
@@ -47,6 +50,10 @@ function DataSettings() {
                fitnessGoal: formData.fitnessGoal
             }
          }
+      }, () => {
+         axios.get('http://localhost:8080/settings')
+            .then(response => databaseContext.setDailyTargetValues(response.data))
+            .catch(error => console.log(error));
       });
 
       console.log(isLoading);
