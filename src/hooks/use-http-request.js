@@ -27,7 +27,7 @@ function useHttpRequest() {
                break;
          }
 
-         if (response.statusText !== 'OK') {
+         if (response.status !== 200) {
             throw new Error('Request failed!');
          }
 
