@@ -4,3 +4,42 @@
   display: flex;
   flex-direction: column;
 }
+
+.input {
+  margin: 0.25rem !important;
+  padding: 0.25rem !important;
+  width: 75% !important;
+}
+
+.quantity {
+  margin: 0.25rem !important;
+  padding: 0.25rem !important;
+  width: 50% !important;
+}
+
+.table {
+  margin: 0.5rem;
+}
+
+.table th {
+  padding: 0.75rem !important;
+}
+
+.table tbody tr td:first-of-type {
+  padding: 0.25rem !important;
+  padding-left: 0.75rem !important;
+}
+
+.table tbody tr td {
+  padding: 0.25rem !important;
+}
+
+.table tbody tr td:last-of-type {
+  padding: 0.25rem !important;
+  padding-right: 0.75rem !important;
+}
+
+/* p-datatable-footer */
+.table > div > div:last-child {
+  padding: 0;
+}
