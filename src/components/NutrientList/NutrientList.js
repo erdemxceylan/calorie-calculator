@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import useHttpRequest from '../../hooks/use-http-request';
 import DatabaseContext from '../../global/context/database-context';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -17,6 +18,7 @@ const PROTEINS_FIELD = 'proteins';
 
 function NutrientList() {
    const databaseContext = useContext(DatabaseContext);
+   const { /*error,*/ sendRequest } = useHttpRequest();
 
    const nutrientListTableColumns = [
       { field: NAME_FIELD, header: NAME },
@@ -58,10 +60,19 @@ function NutrientList() {
    }
 
    function rowEditCompletionHandler(event) {
-      let { index, newData/*, originalEvent*/ } = event;
-      const selectedNutrient = databaseContext.nutrients[index];
+      let { newData: updatedNutrient } = event;
 
-      console.log(newData, selectedNutrient);
+      sendRequest({
+         url: 'http://localhost:8080/update-nutrient',
+         method: 'PUT',
+         body: {
+            id: updatedNutrient.id,
+            name: updatedNutrient.name,
+            calories: Number(updatedNutrient.calories),
+            proteins: Number(updatedNutrient.proteins),
+            unit: updatedNutrient.unit,
+         }
+      }, databaseContext.updateNutrients);
    }
 
    return (

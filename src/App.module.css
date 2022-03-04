@@ -21,8 +21,18 @@
   margin: 0.5rem;
 }
 
-.table th {
+.table th:first-of-type {
   padding: 0.75rem !important;
+  padding-right: 0.25rem !important;
+}
+
+.table th {
+  padding: 0.75rem 0.25rem 0.75rem 0.25rem !important;
+}
+
+.table th:last-of-type {
+  padding: 0.75rem !important;
+  padding-left: 0.25rem !important;
 }
 
 .table tbody tr td:first-of-type {
