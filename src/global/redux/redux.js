@@ -6,7 +6,7 @@ import pageReducer from './page';
 const store = configureStore({
    reducer: {
       consumedNutrients: consumedNutrientsReducer,
-      dataSettings: dataSettingsModalReducer,
+      dataSettingsModal: dataSettingsModalReducer,
       page: pageReducer
    },
 });

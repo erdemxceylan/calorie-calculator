@@ -2,14 +2,14 @@ import React, { useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
-import DataSettingsForm from './components/DataSettingsForm';
+import DataSettingsModalForm from './components/DataSettingsModalForm';
 import useHttpRequest from '../../hooks/use-http-request';
 import { dataSettingsModalActions } from '../../global/redux/data-settings-modal';
 import DatabaseContext from '../../global/context/database-context';
-import styles from './DataSettingsModal.module.css';
+import mainStyles from '../../App.module.css';
 
 function DataSettings() {
-   const showDataSettings = useSelector(state => state.dataSettings.showDataSettings);
+   const showDataSettings = useSelector(state => state.dataSettingsModal.showDataSettings);
    const dispatch = useDispatch();
    const databaseContext = useContext(DatabaseContext);
    const { error, sendRequest } = useHttpRequest();
@@ -33,13 +33,12 @@ function DataSettings() {
       formData.fitnessGoal = goal;
    }
 
-   function submitHandler(event) {
-      event.preventDefault();
+   function submitHandler() {
 
       if (!formData.isValid) return;
 
       sendRequest({
-         url: 'http://localhost:8080/send-settings',
+         url: 'http://localhost:8080/update-settings',
          method: 'PUT',
          body: {
             dailyCalorieNeed: formData.dailyCalorieNeed,
@@ -65,13 +64,13 @@ function DataSettings() {
 
    return (
       <Dialog
-         className={styles.modal}
+         className={mainStyles.modal}
          header="Data Settings"
          visible={showDataSettings}
          onHide={closeHandler}
          footer={submitButton}
       >
-         <DataSettingsForm sendInputData={getInputData} sendFitnessGoal={getFitnessGoal} />
+         <DataSettingsModalForm sendInputData={getInputData} sendFitnessGoal={getFitnessGoal} />
       </Dialog>
    );
 }

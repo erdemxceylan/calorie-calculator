@@ -5,18 +5,6 @@
   flex-direction: column;
 }
 
-.input {
-  margin: 0.25rem !important;
-  padding: 0.25rem !important;
-  width: 75% !important;
-}
-
-.quantity {
-  margin: 0.25rem !important;
-  padding: 0.25rem !important;
-  width: 50% !important;
-}
-
 .table {
   margin: 0.5rem;
 }
@@ -33,6 +21,11 @@
 .table th:last-of-type {
   padding: 0.75rem !important;
   padding-left: 0.25rem !important;
+}
+
+.table th:nth-child(5) > div,
+.table th:last-of-type > div {
+  justify-content: center;
 }
 
 .table tbody tr td:first-of-type {
@@ -52,4 +45,22 @@
 /* p-datatable-footer */
 .table > div > div:last-child {
   padding: 0;
+}
+
+.modal > div:nth-child(1) {
+  padding: 1rem;
+}
+
+.modal > div:nth-child(2),
+.modal > div:nth-child(3) {
+  padding: 0rem 1rem 1rem 1rem;
+}
+
+.modal > div:nth-child(4) {
+  display: none; /* disables resizability */
+}
+
+.invalid {
+  color: #ff0c00 !important;
+  border-color: #ff0c00 !important;
 }

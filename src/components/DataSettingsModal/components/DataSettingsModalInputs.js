@@ -1,7 +1,7 @@
 import React from 'react';
 import { InputText } from 'primereact/inputtext';
 import useValidateInput from '../../../hooks/use-validate-input';
-import styles from './DataSettingsInputs.module.css';
+import mainStyles from '../../../App.module.css';
 
 const MIN = 1;
 const MAX_ENTERED_DAILY_CALORIE_NEED = 100000;
@@ -9,7 +9,7 @@ const MAX_ENTERED_WEIGHT = 1000;
 const MAX_ENTERED_FAT_RATIO = 100;
 const NUMBER = 'number';
 
-function DataSettingsInputs(props) {
+function DataSettingsModalInputs(props) {
 
    const validateValue = (value, min, max) => !isNaN(value) && value >= min && value <= max;
 
@@ -65,7 +65,7 @@ function DataSettingsInputs(props) {
    return (
       <React.Fragment>
          <InputText
-            className={enteredDailyCalorieNeedHasError ? styles.invalid : null}
+            className={enteredDailyCalorieNeedHasError ? mainStyles.invalid : null}
             type={NUMBER}
             min={MIN}
             max={MAX_ENTERED_DAILY_CALORIE_NEED}
@@ -75,7 +75,7 @@ function DataSettingsInputs(props) {
             onBlur={enteredDailyCalorieNeedBlurHandler}
          />
          <InputText
-            className={enteredWeightHasError ? styles.invalid : null}
+            className={enteredWeightHasError ? mainStyles.invalid : null}
             type={NUMBER}
             min={MIN}
             max={MAX_ENTERED_WEIGHT}
@@ -85,7 +85,7 @@ function DataSettingsInputs(props) {
             onBlur={enteredWeightBlurHandler}
          />
          <InputText
-            className={enteredFatRatioHasError ? styles.invalid : null}
+            className={enteredFatRatioHasError ? mainStyles.invalid : null}
             type={NUMBER}
             min={MIN}
             max={MAX_ENTERED_FAT_RATIO}
@@ -98,4 +98,4 @@ function DataSettingsInputs(props) {
    );
 }
 
-export default DataSettingsInputs;
+export default DataSettingsModalInputs;

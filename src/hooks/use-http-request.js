@@ -23,6 +23,14 @@ function useHttpRequest() {
             case 'PUT':
                response = await axios.put(requestConfig.url, body);
                break;
+            case 'DELETE':
+               response = await axios.delete(requestConfig.url, {
+                  headers: {},
+                  data: {
+                     source: body
+                  }
+               });
+               break;
             default:
                break;
          }

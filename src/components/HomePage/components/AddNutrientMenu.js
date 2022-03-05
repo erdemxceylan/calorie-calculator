@@ -58,7 +58,12 @@ function AddNutrientMenu() {
                {selectedNutrient ? selectedNutrient.unit : 'quantity'}
             </label>
          </span>
-         <Button label="Add" className={cn("p-button-success", styles.button)} type="submit" />
+         <Button
+            label="Add"
+            className={cn("p-button-success", styles.button)}
+            type="submit"
+            icon="pi pi-plus"
+         />
       </form>
    );
 };

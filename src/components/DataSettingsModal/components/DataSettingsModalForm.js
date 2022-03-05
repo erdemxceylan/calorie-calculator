@@ -1,10 +1,10 @@
 import React from 'react';
-import DataSettingsInputs from './DataSettingsInputs';
+import DataSettingsModalInputs from './DataSettingsModalInputs';
 import FitnessGoalSelection from './FitnessGoalSelection';
-import styles from './DataSettingsForm.module.css';
+import styles from './DataSettingsModalForm.module.css';
 import cn from 'classnames';
 
-function DataSettingsForm(props) {
+function DataSettingsModalForm(props) {
 
    function getInputData(inputData) {
       props.sendInputData(inputData);
@@ -16,10 +16,10 @@ function DataSettingsForm(props) {
 
    return (
       <div className={cn("p-fluid", styles.form)}>
-         <DataSettingsInputs sendInputData={getInputData} />
+         <DataSettingsModalInputs sendInputData={getInputData} />
          <FitnessGoalSelection sendFitnessGoal={getFitnessGoal} />
       </div>
    );
 }
 
-export default DataSettingsForm;
+export default DataSettingsModalForm;

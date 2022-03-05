@@ -5,7 +5,8 @@ import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import TotalValues from './TotalValues';
 import { consumedNutrientsActions } from '../../../global/redux/consumed-nutrients';
-import styles from '../../../App.module.css';
+import mainStyles from '../../../App.module.css';
+import styles from './ConsumedNutrientsTable.module.css';
 import cn from 'classnames';
 
 const NAME = 'Name';
@@ -83,7 +84,7 @@ function ConsumedNutrientsTable() {
    }
 
    return (
-      <div className={cn("card p-fluid", styles.table)}>
+      <div className={cn("card p-fluid", mainStyles.table)}>
          <DataTable
             value={consumedNutrients}
             editMode="row"
