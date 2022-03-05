@@ -91,7 +91,6 @@ function NutrientList() {
    }
 
    function deletionHandler(selectedNutrientId) {
-      console.log(selectedNutrientId);
       sendDeleteRequest({
          url: 'http://localhost:8080/delete-nutrient',
          method: 'DELETE',

@@ -24,12 +24,7 @@ function useHttpRequest() {
                response = await axios.put(requestConfig.url, body);
                break;
             case 'DELETE':
-               response = await axios.delete(requestConfig.url, {
-                  headers: {},
-                  data: {
-                     source: body
-                  }
-               });
+               response = await axios.delete(requestConfig.url, { data: { id: body.id } });
                break;
             default:
                break;
