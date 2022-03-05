@@ -39,7 +39,7 @@ function useHttpRequest() {
             throw new Error('Request failed!');
          }
 
-         if (applyData) applyData(response.data);
+         if (!!applyData) applyData(response.data);
       } catch (err) {
          setError(err.message || 'Something went wrong!');
       }
