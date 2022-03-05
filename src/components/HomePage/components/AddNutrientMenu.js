@@ -62,7 +62,6 @@ function AddNutrientMenu() {
             label="Add"
             className={cn("p-button-success", styles.button)}
             type="submit"
-            icon="pi pi-plus"
          />
       </form>
    );
