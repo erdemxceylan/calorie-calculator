@@ -4,19 +4,19 @@ import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
 import DataSettingsModalForm from './components/DataSettingsModalForm';
 import useHttpRequest from '../../hooks/use-http-request';
-import { dataSettingsModalActions } from '../../global/redux/data-settings-modal';
+import { modalActions } from '../../global/redux/modal';
 import DatabaseContext from '../../global/context/database-context';
 import mainStyles from '../../App.module.css';
 
 function DataSettings() {
-   const showDataSettings = useSelector(state => state.dataSettingsModal.showDataSettings);
+   const showDataSettings = useSelector(state => state.modal.showDataSettings);
    const dispatch = useDispatch();
    const databaseContext = useContext(DatabaseContext);
    const { error, sendRequest } = useHttpRequest();
    let formData = {};
 
    function closeHandler() {
-      dispatch(dataSettingsModalActions.hide());
+      dispatch(modalActions.hideDataSettings());
    }
 
    function getInputData(inputData) {

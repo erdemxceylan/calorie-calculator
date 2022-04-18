@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { TabMenu } from 'primereact/tabmenu';
-import { dataSettingsModalActions } from '../../global/redux/data-settings-modal';
+import { modalActions } from '../../global/redux/modal';
 import { pageActions } from '../../global/redux/page';
 import styles from './Header.module.css';
 
@@ -12,7 +12,8 @@ function Header() {
    const items = [
       { label: 'Home', icon: 'pi pi-fw pi-home' },
       { label: 'Nutrient List', icon: 'pi pi-fw pi-list' },
-      { label: 'Data Settings', icon: 'pi pi-fw pi-cog' }
+      { label: 'Data Settings', icon: 'pi pi-fw pi-cog' },
+      { label: '', icon: 'pi pi-fw pi-sign-in' }
    ];
 
    function tabChangeHandler(event) {
@@ -30,9 +31,15 @@ function Header() {
       }
 
       if (event.index === 2) {
-         dispatch(dataSettingsModalActions.show());
+         dispatch(modalActions.showDataSettings());
       } else {
-         dispatch(dataSettingsModalActions.hide());
+         dispatch(modalActions.hideDataSettings());
+      }
+
+      if (event.index === 3) {
+         dispatch(modalActions.showLogin());
+      } else {
+         dispatch(modalActions.hideLogin());
       }
    }
 

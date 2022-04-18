@@ -1,11 +1,15 @@
 .header ul {
   flex-direction: column;
   justify-content: space-between;
-  height: 8rem;
+  height: 10rem;
 }
 
 .header a {
   height: 1.5rem;
+}
+
+.header > ul > li:nth-child(4) {
+  margin-left: 0;
 }
 
 @media (min-width: 36rem) {
@@ -13,6 +17,10 @@
     flex-direction: row;
     justify-content: flex-start;
     height: 3.5rem;
+  }
+
+  .header > ul > li:nth-child(4) {
+    margin-left: auto;
   }
 
   .header a {

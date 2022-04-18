@@ -54,8 +54,6 @@ const consumedNutrientsSlice = createSlice({
             state.consumedNutrients[existingIndex] = updatedNutrient;
             state.totalCalories += updatedNutrient.caloriesTaken - existingNutrient.caloriesTaken;
             state.totalProteins += updatedNutrient.proteinsTaken - existingNutrient.proteinsTaken;
-         } else {
-            return;
          }
       },
       deleteConsumedNutrient(state, action) {
