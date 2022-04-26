@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialModalState = {
    showDataSettings: false,
-   showLogin: false
+   showLogin: false,
+   isSigningUp: false
 };
 
 const ModalSlice = createSlice({
@@ -20,6 +21,9 @@ const ModalSlice = createSlice({
       },
       hideLogin(state) {
          state.showLogin = false;
+      },
+      switchSignup(state) {
+         state.isSigningUp = !state.isSigningUp;
       }
    }
 });

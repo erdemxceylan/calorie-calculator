@@ -1,6 +1,11 @@
 import { useState, useCallback } from 'react';
 import axios from 'axios';
 
+const GET = 'GET';
+const POST = 'POST';
+const PUT = 'PUT';
+const DELETE = 'DELETE';
+
 function useHttpRequest() {
    const [isLoading, setIsLoading] = useState(false);
    const [error, setError] = useState(null);
@@ -8,22 +13,22 @@ function useHttpRequest() {
    const sendRequest = useCallback(async (requestConfig, applyData) => {
       setIsLoading(true);
       setError(null);
-      const method = requestConfig.method ? requestConfig.method : 'GET';
+      const method = requestConfig.method ? requestConfig.method : GET;
       const body = requestConfig.body ? requestConfig.body : null;
       let response;
 
       try {
          switch (method) {
-            case 'GET':
+            case GET:
                response = await axios.get(requestConfig.url);
                break;
-            case 'POST':
+            case POST:
                response = await axios.post(requestConfig.url, body);
                break;
-            case 'PUT':
+            case PUT:
                response = await axios.put(requestConfig.url, body);
                break;
-            case 'DELETE':
+            case DELETE:
                response = await axios.delete(requestConfig.url, { data: { id: body.id } });
                break;
             default:
