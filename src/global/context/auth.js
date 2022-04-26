@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 const AuthContext = React.createContext({
    token: '',
    isLoggedIn: false,
+   isAdminLoggedIn: false,
    login: function (token) { },
    logout: function () { }
 });

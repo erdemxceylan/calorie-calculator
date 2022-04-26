@@ -1,9 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { InputText } from 'primereact/inputtext';
 import useValidateInput from '../../../hooks/use-validate-input';
 import mainStyles from '../../../App.module.css';
 
+const ADMIN = 'admin@test.com';
+
 function LoginModalForm(props) {
+   const isLoggingIn = useSelector(state => state.modal.isLoggingIn);
 
    const {
       value: enteredEmail,
@@ -23,7 +27,7 @@ function LoginModalForm(props) {
       reset: resetEnteredPassword
    } = useValidateInput(value => value.length > 6);
 
-   const areInputsValid = enteredEmailIsValid && enteredPasswordIsValid;
+   let areInputsValid = enteredEmailIsValid && enteredPasswordIsValid;
 
    function resetInputs() {
       resetEnteredEmail();
@@ -38,6 +42,12 @@ function LoginModalForm(props) {
       isFormValid: areInputsValid,
       resetForm: resetInputs
    });
+
+   if (!isLoggingIn && enteredEmail === ADMIN) {
+      alert(`${ADMIN} cannot be used for signing up`);
+      resetInputs();
+      areInputsValid = false;
+   }
 
    return (
       <React.Fragment>
