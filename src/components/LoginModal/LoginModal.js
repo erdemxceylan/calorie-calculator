@@ -47,19 +47,14 @@ function LoginModal() {
       if (!formData.isValid) return;
 
       const url = isLoggingIn ? SIGN_IN_URL : SIGN_UP_URL;
+      const method = POST;
+      const body = {
+         email: formData.email,
+         password: formData.password,
+         returnSecureToken: true
+      };
 
-      sign({
-         url,
-         method: POST,
-         body: {
-            email: formData.email,
-            password: formData.password,
-            returnSecureToken: true
-         }
-      }, data => {
-         console.log(data);
-         auth.login(data.idToken);
-      });
+      sign({ url, method, body }, data => auth.login(data.idToken));
 
       formData.reset();
    }
