@@ -5,7 +5,7 @@ import { Button } from 'primereact/button';
 import DataSettingsModalForm from './components/DataSettingsModalForm';
 import useHttpRequest from '../../hooks/use-http-request';
 import { modalActions } from '../../global/redux/modal';
-import DatabaseContext from '../../global/context/database-context';
+import DatabaseContext from '../../global/context/database';
 import mainStyles from '../../App.module.css';
 
 function DataSettings() {

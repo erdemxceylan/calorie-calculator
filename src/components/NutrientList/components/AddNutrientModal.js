@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import useHttpRequest from '../../../hooks/use-http-request';
-import DatabaseContext from '../../../global/context/database-context';
+import DatabaseContext from '../../../global/context/database';
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
 import AddNutrientModalInputs from './AddNutrientModalInputs';

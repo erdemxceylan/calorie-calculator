@@ -4,8 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import { DatabaseContextProvider } from './global/context/database-context';
-import { AuthContextProvider } from './global/context/auth-context';
+import { DatabaseContextProvider } from './global/context/database';
+import { AuthContextProvider } from './global/context/auth';
 import store from './global/redux/store';
 
 ReactDOM.render(

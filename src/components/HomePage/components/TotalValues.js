@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
-import DatabaseContext from '../../../global/context/database-context';
+import DatabaseContext from '../../../global/context/database';
 import styles from './TotalValues.module.css';
 
 function TotalValues() {

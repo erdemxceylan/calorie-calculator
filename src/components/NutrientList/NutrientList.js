@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import useHttpRequest from '../../hooks/use-http-request';
-import DatabaseContext from '../../global/context/database-context';
+import DatabaseContext from '../../global/context/database';
 import AddNutrientModal from './components/AddNutrientModal';
 import { Button } from 'primereact/button';
 import { DataTable } from 'primereact/datatable';

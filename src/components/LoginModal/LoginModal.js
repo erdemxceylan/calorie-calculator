@@ -1,24 +1,26 @@
-import React from 'react';
-import { Dialog } from 'primereact/dialog';
+import React, { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { modalActions } from '../../global/redux/modal';
+import AuthContext from '../../global/context/auth';
+import useHttpRequest from '../../hooks/use-http-request';
+import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
+import LoginModalForm from './components/LoginModalForm';
 import mainStyles from '../../App.module.css';
 import styles from './LoginModal.module.css';
-import LoginModalForm from './components/LoginModalForm';
-import useHttpRequest from '../../hooks/use-http-request';
 
 const WEB_API_KEY = 'AIzaSyCayV-EV6nQ6yPmmyoxp8FaYswze90k_QA';
-const BASE_URL_SIGN_UP = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=';
-const BASE_URL_SIGN_IN = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
-const URL_FOR_SIGN_UP = BASE_URL_SIGN_UP + WEB_API_KEY;
-const URL_FOR_SIGN_IN = BASE_URL_SIGN_IN + WEB_API_KEY;
+const SIGN_UP_BASE_URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=';
+const SIGN_IN_BASE_URL = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=';
+const SIGN_UP_URL = SIGN_UP_BASE_URL + WEB_API_KEY;
+const SIGN_IN_URL = SIGN_IN_BASE_URL + WEB_API_KEY;
 const POST = 'POST';
 
 function LoginModal() {
    const displayLogin = useSelector(state => state.modal.displayLogin);
    const isLoggingIn = useSelector(state => state.modal.isLoggingIn);
    const dispatch = useDispatch();
+   const auth = useContext(AuthContext);
    const { sendRequest: sign } = useHttpRequest();
    let formData = {};
 
@@ -44,7 +46,7 @@ function LoginModal() {
 
       if (!formData.isValid) return;
 
-      const url = isLoggingIn ? URL_FOR_SIGN_IN : URL_FOR_SIGN_UP;
+      const url = isLoggingIn ? SIGN_IN_URL : SIGN_UP_URL;
 
       sign({
          url,
@@ -54,7 +56,10 @@ function LoginModal() {
             password: formData.password,
             returnSecureToken: true
          }
-      }, data => console.log(data));
+      }, data => {
+         console.log(data);
+         auth.login(data.idToken);
+      });
 
       formData.reset();
    }
