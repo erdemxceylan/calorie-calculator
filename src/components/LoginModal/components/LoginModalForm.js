@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { InputText } from 'primereact/inputtext';
 import useValidateInput from '../../../hooks/use-validate-input';
 import mainStyles from '../../../App.module.css';
+import AuthContext from '../../../global/context/auth';
 
 const ADMIN = 'admin@test.com';
 
 function LoginModalForm(props) {
    const isLoggingIn = useSelector(state => state.modal.isLoggingIn);
+   const auth = useContext(AuthContext);
 
    const {
       value: enteredEmail,
@@ -43,10 +45,16 @@ function LoginModalForm(props) {
       resetForm: resetInputs
    });
 
-   if (!isLoggingIn && enteredEmail === ADMIN) {
+   const isAdmin = enteredEmail === ADMIN;
+
+   if (!isLoggingIn && isAdmin) {
       alert(`${ADMIN} cannot be used for signing up`);
       resetInputs();
       areInputsValid = false;
+   }
+
+   if (isLoggingIn) {
+      isAdmin ? auth.setIsAdmin(true) : auth.setIsAdmin(false);
    }
 
    return (
