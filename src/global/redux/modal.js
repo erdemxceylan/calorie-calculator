@@ -1,29 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialModalState = {
-   showDataSettings: false,
-   showLogin: false,
-   isSigningUp: false
+const initialState = {
+   displayDataSettings: false,
+   displayLogin: false,
+   isLoggingIn: true
 };
 
 const ModalSlice = createSlice({
-   name: "modal",
-   initialState: initialModalState,
+   name: 'modal',
+   initialState,
    reducers: {
-      showDataSettings(state) {
-         state.showDataSettings = true;
+      displayDataSettings(state) {
+         state.displayDataSettings = true;
       },
       hideDataSettings(state) {
-         state.showDataSettings = false;
+         state.displayDataSettings = false;
       },
-      showLogin(state) {
-         state.showLogin = true;
+      displayLogin(state) {
+         state.displayLogin = true;
       },
       hideLogin(state) {
-         state.showLogin = false;
+         state.displayLogin = false;
       },
       switchSignup(state) {
-         state.isSigningUp = !state.isSigningUp;
+         state.isLoggingIn = !state.isLoggingIn;
       }
    }
 });

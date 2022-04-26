@@ -10,14 +10,14 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 
 function App() {
-  const showHomePage = useSelector(state => state.page.showHomePage);
-  const showNutrientList = useSelector(state => state.page.showNutrientList);
+  const displayHomePage = useSelector(state => state.page.displayHomePage);
+  const displayNutrientList = useSelector(state => state.page.displayNutrientList);
 
   return (
     <React.Fragment>
       <Header />
-      {showHomePage && <HomePage />}
-      {showNutrientList && <NutrientList />}
+      {displayHomePage && <HomePage />}
+      {displayNutrientList && <NutrientList />}
       <DataSettingsModal />
       <LoginModal />
     </React.Fragment>

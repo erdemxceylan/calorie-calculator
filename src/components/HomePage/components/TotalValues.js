@@ -6,10 +6,10 @@ import styles from './TotalValues.module.css';
 function TotalValues() {
    const totalCalories = useSelector(state => state.consumedNutrients.totalCalories).toFixed(2);
    const totalProteins = useSelector(state => state.consumedNutrients.totalProteins).toFixed(2);
-   const databaseContext = useContext(DatabaseContext);
-   const dailyCalorieTargetLowerBound = databaseContext.dailyTargetValues.dailyCalorieTargetLowerBound;
-   const dailyCalorieTargetUpperBound = databaseContext.dailyTargetValues.dailyCalorieTargetUpperBound;
-   const dailyProteinNeed = databaseContext.dailyTargetValues.dailyProteinNeed;
+   const database = useContext(DatabaseContext);
+   const dailyCalorieTargetLowerBound = database.dailyTargetValues.dailyCalorieTargetLowerBound;
+   const dailyCalorieTargetUpperBound = database.dailyTargetValues.dailyCalorieTargetUpperBound;
+   const dailyProteinNeed = database.dailyTargetValues.dailyProteinNeed;
 
    const dailyCalorieTargetInterval = `${dailyCalorieTargetLowerBound} - ${dailyCalorieTargetUpperBound}`;
 

@@ -5,12 +5,12 @@ import ConsumedNutrientsTable from './components/ConsumedNutrientsTable';
 import styles from '../../App.module.css';
 
 function HomePage() {
-   const isConsumedNutrientsEmpty = useSelector(state => state.consumedNutrients.isConsumedNutrientsEmpty);
+   const isEmpty = useSelector(state => state.consumedNutrients.isEmpty);
 
    return (
-      <div className={styles["page-layout"]}>
+      <div className={styles['page-layout']}>
          <AddNutrientMenu />
-         {!isConsumedNutrientsEmpty && <ConsumedNutrientsTable />}
+         {!isEmpty && <ConsumedNutrientsTable />}
       </div>
    );
 }

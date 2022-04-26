@@ -63,21 +63,21 @@ function ConsumedNutrientsTable() {
       if (newValue === rowData.consumedQuantity) {
          return;
       } else if (Number(newValue) > 0) {
-         const updatedNutrient = {
+         const nutrient = {
             id: rowData.id,
             name: rowData.name,
             consumedQuantity: newValue,
             caloriesTaken: rowData.caloriesTaken * +newValue / +rowData.consumedQuantity,
             proteinsTaken: rowData.proteinsTaken * +newValue / +rowData.consumedQuantity
          };
-         dispatch(consumedNutrientsActions.updateConsumedNutrient(updatedNutrient));
+         dispatch(consumedNutrientsActions.update(nutrient));
       } else if (Number(newValue) === 0) {
-         const eraseData = {
+         const nutrient = {
             id: rowData.id,
             calories: rowData.caloriesTaken,
             proteins: rowData.proteinsTaken
          };
-         dispatch(consumedNutrientsActions.deleteConsumedNutrient(eraseData));
+         dispatch(consumedNutrientsActions.delete(nutrient));
       } else {
          originalEvent.preventDefault();
       }

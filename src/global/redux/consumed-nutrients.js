@@ -1,17 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialConsumedNutrientsState = {
+const initialState = {
    totalCalories: 0,
    totalProteins: 0,
    consumedNutrients: [],
-   isConsumedNutrientsEmpty: true
+   isEmpty: true
 };
 
 const consumedNutrientsSlice = createSlice({
-   name: "consumed nutrients",
-   initialState: initialConsumedNutrientsState,
+   name: 'consumed nutrients',
+   initialState,
    reducers: {
-      addConsumedNutrient(state, action) {
+      add(state, action) {
          const existingIndex = state.consumedNutrients.findIndex(nutrient => nutrient.id === action.payload.id);
 
          if (existingIndex >= 0) {
@@ -31,14 +31,9 @@ const consumedNutrientsSlice = createSlice({
 
          state.totalCalories += action.payload.caloriesTaken;
          state.totalProteins += action.payload.proteinsTaken;
-
-         if (state.consumedNutrients.length > 0) {
-            state.isConsumedNutrientsEmpty = false;
-         } else {
-            state.isConsumedNutrientsEmpty = true;
-         }
+         state.isEmpty = state.consumedNutrients.length > 0 ? false : true;
       },
-      updateConsumedNutrient(state, action) {
+      update(state, action) {
          const existingIndex = state.consumedNutrients.findIndex(nutrient => nutrient.id === action.payload.id);
 
          if (existingIndex >= 0) {
@@ -56,17 +51,12 @@ const consumedNutrientsSlice = createSlice({
             state.totalProteins += updatedNutrient.proteinsTaken - existingNutrient.proteinsTaken;
          }
       },
-      deleteConsumedNutrient(state, action) {
+      delete(state, action) {
          const updatedConsumedNutrients = state.consumedNutrients.filter(nutrient => nutrient.id !== action.payload.id);
          state.consumedNutrients = updatedConsumedNutrients;
          state.totalCalories -= action.payload.calories;
          state.totalProteins -= action.payload.proteins;
-
-         if (state.consumedNutrients.length > 0) {
-            state.isConsumedNutrientsEmpty = false;
-         } else {
-            state.isConsumedNutrientsEmpty = true;
-         }
+         state.isEmpty = state.consumedNutrients.length > 0 ? false : true;
       }
    }
 });

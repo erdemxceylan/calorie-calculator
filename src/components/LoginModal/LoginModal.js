@@ -16,10 +16,10 @@ const URL_FOR_SIGN_IN = BASE_URL_SIGN_IN + WEB_API_KEY;
 const POST = 'POST';
 
 function LoginModal() {
-   const showLogin = useSelector(state => state.modal.showLogin);
-   const isSigningUp = useSelector(state => state.modal.isSigningUp);
+   const displayLogin = useSelector(state => state.modal.displayLogin);
+   const isLoggingIn = useSelector(state => state.modal.isLoggingIn);
    const dispatch = useDispatch();
-   const { sendRequest } = useHttpRequest();
+   const { sendRequest: sign } = useHttpRequest();
    let formData = {};
 
    function closeHandler() {
@@ -44,9 +44,9 @@ function LoginModal() {
 
       if (!formData.isValid) return;
 
-      const url = isSigningUp ? URL_FOR_SIGN_UP : URL_FOR_SIGN_IN;
+      const url = isLoggingIn ? URL_FOR_SIGN_IN : URL_FOR_SIGN_UP;
 
-      sendRequest({
+      sign({
          url,
          method: POST,
          body: {
@@ -62,7 +62,7 @@ function LoginModal() {
    const submitButton = (
       <Button
          className='p-button-success'
-         label={isSigningUp ? 'Sign up' : 'Login'}
+         label={isLoggingIn ? 'Login' : 'Sign up'}
          onClick={submitHandler}
       />
    );
@@ -70,7 +70,7 @@ function LoginModal() {
    const switchButton = (
       <Button
          className={styles.switch}
-         label={isSigningUp ? 'Login with an existing account' : 'Create a new account'}
+         label={isLoggingIn ? 'Create a new account' : 'Login with an existing account'}
          onClick={switchHandler}
       />
    );
@@ -78,8 +78,8 @@ function LoginModal() {
    return (
       <Dialog
          className={mainStyles.modal}
-         header={isSigningUp ? 'Sign up' : 'Login'}
-         visible={showLogin}
+         header={isLoggingIn ? 'Login' : 'Sign up'}
+         visible={displayLogin}
          onHide={closeHandler}
          footer={switchButton}
       >

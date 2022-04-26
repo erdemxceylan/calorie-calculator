@@ -9,7 +9,7 @@ import styles from './AddNutrientMenu.module.css';
 import cn from 'classnames';
 
 function AddNutrientMenu() {
-   const databaseContext = useContext(DatabaseContext);
+   const database = useContext(DatabaseContext);
    const [selectedNutrient, setSelectedNutrient] = useState(null);
    const [consumedQuantity, setConsumedQuantity] = useState('');
 
@@ -28,7 +28,7 @@ function AddNutrientMenu() {
             proteinsTaken: selectedNutrient.proteins * +consumedQuantity
          };
 
-         dispatch(consumedNutrientsActions.addConsumedNutrient(consumedNutrient));
+         dispatch(consumedNutrientsActions.add(consumedNutrient));
 
          setSelectedNutrient(null);
          setConsumedQuantity('');
@@ -40,7 +40,7 @@ function AddNutrientMenu() {
          <Dropdown
             className={styles.dropdown}
             value={selectedNutrient}
-            options={databaseContext.nutrients}
+            options={database.nutrients}
             onChange={e => setSelectedNutrient(e.target.value)}
             optionLabel="name"
             filter showClear filterBy="name"

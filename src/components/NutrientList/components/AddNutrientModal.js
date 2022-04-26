@@ -9,8 +9,8 @@ import styles from './AddNutrientModal.module.css';
 import cn from 'classnames';
 
 function AddNutrientModal(props) {
-   const { sendRequest: addNutrientRequest } = useHttpRequest();
-   const databaseContext = useContext(DatabaseContext);
+   const { sendRequest: addNutrient } = useHttpRequest();
+   const database = useContext(DatabaseContext);
    let formData = {};
 
    function getInputData(inputData) {
@@ -26,7 +26,7 @@ function AddNutrientModal(props) {
 
       if (!formData.isValid) return;
 
-      addNutrientRequest({
+      addNutrient({
          url: 'http://localhost:8080/add-nutrient',
          method: 'POST',
          body: {
@@ -35,7 +35,7 @@ function AddNutrientModal(props) {
             calories: formData.calories,
             proteins: formData.proteins
          }
-      }, databaseContext.updateNutrients);
+      }, database.updateNutrients);
 
       formData.reset();
       props.onHide();
@@ -53,7 +53,7 @@ function AddNutrientModal(props) {
       <Dialog
          className={mainStyles.modal}
          header="Add New Nutrient"
-         visible={props.showModal}
+         visible={props.displayModal}
          onHide={props.onHide}
          footer={submitButton}
       >

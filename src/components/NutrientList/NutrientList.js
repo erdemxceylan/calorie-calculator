@@ -20,8 +20,8 @@ const CALORIES_FIELD = 'calories';
 const PROTEINS_FIELD = 'proteins';
 
 function NutrientList() {
-   const [showAddNutrientModal, setShowAddNutrientModal] = useState(false);
-   const databaseContext = useContext(DatabaseContext);
+   const [displayAddNutrientModal, setDisplayAddNutrientModal] = useState(false);
+   const database = useContext(DatabaseContext);
    const { sendRequest: sendUpdateRequest } = useHttpRequest();
    const { sendRequest: sendDeleteRequest } = useHttpRequest();
 
@@ -77,7 +77,7 @@ function NutrientList() {
             proteins: Number(updatedNutrient.proteins),
             unit: updatedNutrient.unit,
          }
-      }, databaseContext.updateNutrients);
+      }, database.updateNutrients);
    }
 
    function deletionButton(rowData) {
@@ -95,7 +95,7 @@ function NutrientList() {
          url: 'http://localhost:8080/delete-nutrient',
          method: 'DELETE',
          body: { id: selectedNutrientId }
-      }, databaseContext.updateNutrients);
+      }, database.updateNutrients);
    }
 
    return (
@@ -104,11 +104,11 @@ function NutrientList() {
             className={cn("p-button-success", styles.button)}
             label="Add New Nutrient"
             icon="pi pi-plus"
-            onClick={setShowAddNutrientModal.bind(null, true)}
+            onClick={setDisplayAddNutrientModal.bind(null, true)}
          />
          <div className={cn("card p-fluid", mainStyles.table)}>
             <DataTable
-               value={databaseContext.nutrients}
+               value={database.nutrients}
                editMode="row"
                onRowEditComplete={rowEditCompletionHandler}
                responsiveLayout="scroll"
@@ -135,8 +135,8 @@ function NutrientList() {
             </DataTable>
          </div>
          <AddNutrientModal
-            showModal={showAddNutrientModal}
-            onHide={setShowAddNutrientModal.bind(null, false)}
+            displayModal={displayAddNutrientModal}
+            onHide={setDisplayAddNutrientModal.bind(null, false)}
          />
       </div>
    );

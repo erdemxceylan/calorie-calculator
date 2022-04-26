@@ -21,23 +21,23 @@ function Header() {
 
       switch (event.index) {
          case 0:
-            dispatch(pageActions.showHomePage());
+            dispatch(pageActions.displayHomePage());
             break;
          case 1:
-            dispatch(pageActions.showNutrientList());
+            dispatch(pageActions.displayNutrientList());
             break;
          default:
             break;
       }
 
       if (event.index === 2) {
-         dispatch(modalActions.showDataSettings());
+         dispatch(modalActions.displayDataSettings());
       } else {
          dispatch(modalActions.hideDataSettings());
       }
 
       if (event.index === 3) {
-         dispatch(modalActions.showLogin());
+         dispatch(modalActions.displayLogin());
       } else {
          dispatch(modalActions.hideLogin());
       }

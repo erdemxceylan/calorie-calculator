@@ -9,9 +9,9 @@ import DatabaseContext from '../../global/context/database-context';
 import mainStyles from '../../App.module.css';
 
 function DataSettings() {
-   const showDataSettings = useSelector(state => state.modal.showDataSettings);
+   const displayDataSettings = useSelector(state => state.modal.displayDataSettings);
    const dispatch = useDispatch();
-   const databaseContext = useContext(DatabaseContext);
+   const database = useContext(DatabaseContext);
    const { error, sendRequest } = useHttpRequest();
    let formData = {};
 
@@ -46,7 +46,7 @@ function DataSettings() {
             fatRatio: formData.fatRatio,
             fitnessGoal: formData.fitnessGoal
          }
-      }, databaseContext.updateDailyTargetValues);
+      }, database.updateDailyTargetValues);
 
       if (error) console.log(error);
 
@@ -56,8 +56,8 @@ function DataSettings() {
 
    const submitButton = (
       <Button
-         label="Submit"
-         className="p-button-success"
+         label='Submit'
+         className='p-button-success'
          onClick={submitHandler}
       />
    );
@@ -65,8 +65,8 @@ function DataSettings() {
    return (
       <Dialog
          className={mainStyles.modal}
-         header="Data Settings"
-         visible={showDataSettings}
+         header='Data Settings'
+         visible={displayDataSettings}
          onHide={closeHandler}
          footer={submitButton}
       >

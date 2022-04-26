@@ -5,12 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { DatabaseContextProvider } from './global/context/database-context';
-import store from './global/redux/redux';
+import { AuthContextProvider } from './global/context/auth-context';
+import store from './global/redux/store';
 
 ReactDOM.render(
    <Provider store={store}>
       <DatabaseContextProvider>
-         <App />
+         <AuthContextProvider>
+            <App />
+         </AuthContextProvider>
       </DatabaseContextProvider>
    </Provider>
    , document.getElementById('root')
