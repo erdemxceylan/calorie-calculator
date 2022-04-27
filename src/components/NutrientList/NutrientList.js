@@ -19,6 +19,10 @@ const NAME_FIELD = 'name';
 const UNIT_FIELD = 'unit';
 const CALORIES_FIELD = 'calories';
 const PROTEINS_FIELD = 'proteins';
+const DELETE = 'DELETE';
+const PUT = 'PUT';
+const UPDATE_URL = 'http://localhost:8080/update-nutrient';
+const DELETE_URL = 'http://localhost:8080/delete-nutrient';
 
 function NutrientList() {
    const [displayAddNutrientModal, setDisplayAddNutrientModal] = useState(false);
@@ -27,7 +31,7 @@ function NutrientList() {
    const { sendRequest: sendDeleteRequest } = useHttpRequest();
    const auth = useContext(AuthContext);
 
-   const nutrientListTableColumns = [
+   const nutrientListColumnHeaders = [
       { field: NAME_FIELD, header: NAME },
       { field: UNIT_FIELD, header: UNIT },
       { field: CALORIES_FIELD, header: CALORIES },
@@ -70,8 +74,8 @@ function NutrientList() {
       let { newData: updatedNutrient } = event;
 
       sendUpdateRequest({
-         url: 'http://localhost:8080/update-nutrient',
-         method: 'PUT',
+         url: UPDATE_URL,
+         method: PUT,
          body: {
             id: updatedNutrient.id,
             name: updatedNutrient.name,
@@ -79,6 +83,14 @@ function NutrientList() {
             proteins: Number(updatedNutrient.proteins),
             unit: updatedNutrient.unit,
          }
+      }, database.updateNutrients);
+   }
+
+   function deletionHandler(selectedNutrientId) {
+      sendDeleteRequest({
+         url: DELETE_URL,
+         method: DELETE,
+         body: { id: selectedNutrientId }
       }, database.updateNutrients);
    }
 
@@ -92,24 +104,44 @@ function NutrientList() {
       );
    }
 
-   function deletionHandler(selectedNutrientId) {
-      sendDeleteRequest({
-         url: 'http://localhost:8080/delete-nutrient',
-         method: 'DELETE',
-         body: { id: selectedNutrientId }
-      }, database.updateNutrients);
-   }
+   const addNewNutrientButton = (
+      <Button
+         className={cn("p-button-success", styles.button)}
+         label="Add New Nutrient"
+         icon="pi pi-plus"
+         onClick={setDisplayAddNutrientModal.bind(null, true)}
+      />
+   );
+
+   const nutrientListColumns = nutrientListColumnHeaders.map(({ field, header }) => {
+      return <Column
+         key={field}
+         field={field}
+         header={header}
+         body={rowData => labelField(rowData, field)}
+         editor={options => editor(options, field)}
+      />;
+   });
+
+   const editionColumn = (
+      <Column
+         header="Edit"
+         rowEditor headerStyle={{ width: '8rem', minWidth: '8rem' }}
+         bodyStyle={{ textAlign: 'center' }}
+      />
+   );
+
+   const deletionColumn = (
+      <Column
+         header="Delete"
+         bodyStyle={{ textAlign: 'center' }}
+         body={rowData => deletionButton(rowData)}
+      />
+   );
 
    return (
       <div className={mainStyles["page-layout"]}>
-         {auth.isAdminLoggedIn && (
-            <Button
-               className={cn("p-button-success", styles.button)}
-               label="Add New Nutrient"
-               icon="pi pi-plus"
-               onClick={setDisplayAddNutrientModal.bind(null, true)}
-            />
-         )}
+         {auth.isAdminLoggedIn && addNewNutrientButton}
          <div className={cn("card p-fluid", mainStyles.table)}>
             <DataTable
                value={database.nutrients}
@@ -117,29 +149,9 @@ function NutrientList() {
                onRowEditComplete={rowEditCompletionHandler}
                responsiveLayout="scroll"
             >
-               {nutrientListTableColumns.map(({ field, header }) => {
-                  return <Column
-                     key={field}
-                     field={field}
-                     header={header}
-                     body={rowData => labelField(rowData, field)}
-                     editor={options => editor(options, field)}
-                  />;
-               })}
-               {auth.isAdminLoggedIn && (
-                  <Column
-                     header="Edit"
-                     rowEditor headerStyle={{ width: '8rem', minWidth: '8rem' }}
-                     bodyStyle={{ textAlign: 'center' }}
-                  />
-               )}
-               {auth.isAdminLoggedIn && (
-                  <Column
-                     header="Delete"
-                     bodyStyle={{ textAlign: 'center' }}
-                     body={rowData => deletionButton(rowData)}
-                  />
-               )}
+               {nutrientListColumns}
+               {auth.isAdminLoggedIn && editionColumn}
+               {auth.isAdminLoggedIn && deletionColumn}
             </DataTable>
          </div>
          <AddNutrientModal
