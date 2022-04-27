@@ -6,7 +6,6 @@ const AuthContext = React.createContext({
    isAdminLoggedIn: false,
    login: function (token) { },
    logout: function () { },
-   isAdminLoggingIn: function (boolean) { }
 });
 
 const ADMIN = 'admin@test.com';

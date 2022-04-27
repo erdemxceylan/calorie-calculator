@@ -27,9 +27,9 @@ const DELETE_URL = 'http://localhost:8080/delete-nutrient';
 function NutrientList() {
    const [displayAddNutrientModal, setDisplayAddNutrientModal] = useState(false);
    const database = useContext(DatabaseContext);
+   const auth = useContext(AuthContext);
    const { sendRequest: sendUpdateRequest } = useHttpRequest();
    const { sendRequest: sendDeleteRequest } = useHttpRequest();
-   const auth = useContext(AuthContext);
 
    const nutrientListColumnHeaders = [
       { field: NAME_FIELD, header: NAME },
