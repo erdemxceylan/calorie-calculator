@@ -9,6 +9,7 @@ import { Column } from 'primereact/column';
 import mainStyles from '../../App.module.css';
 import styles from './NutrientList.module.css';
 import cn from 'classnames';
+import AuthContext from '../../global/context/auth';
 
 const NAME = 'Name';
 const UNIT = 'Unit';
@@ -24,6 +25,7 @@ function NutrientList() {
    const database = useContext(DatabaseContext);
    const { sendRequest: sendUpdateRequest } = useHttpRequest();
    const { sendRequest: sendDeleteRequest } = useHttpRequest();
+   const auth = useContext(AuthContext);
 
    const nutrientListTableColumns = [
       { field: NAME_FIELD, header: NAME },
@@ -100,12 +102,14 @@ function NutrientList() {
 
    return (
       <div className={mainStyles["page-layout"]}>
-         <Button
-            className={cn("p-button-success", styles.button)}
-            label="Add New Nutrient"
-            icon="pi pi-plus"
-            onClick={setDisplayAddNutrientModal.bind(null, true)}
-         />
+         {auth.isAdminLoggedIn && (
+            <Button
+               className={cn("p-button-success", styles.button)}
+               label="Add New Nutrient"
+               icon="pi pi-plus"
+               onClick={setDisplayAddNutrientModal.bind(null, true)}
+            />
+         )}
          <div className={cn("card p-fluid", mainStyles.table)}>
             <DataTable
                value={database.nutrients}
@@ -122,16 +126,20 @@ function NutrientList() {
                      editor={options => editor(options, field)}
                   />;
                })}
-               <Column
-                  header="Edit"
-                  rowEditor headerStyle={{ width: '8rem', minWidth: '8rem' }}
-                  bodyStyle={{ textAlign: 'center' }}
-               />
-               <Column
-                  header="Delete"
-                  bodyStyle={{ textAlign: 'center' }}
-                  body={rowData => deletionButton(rowData)}
-               />
+               {auth.isAdminLoggedIn && (
+                  <Column
+                     header="Edit"
+                     rowEditor headerStyle={{ width: '8rem', minWidth: '8rem' }}
+                     bodyStyle={{ textAlign: 'center' }}
+                  />
+               )}
+               {auth.isAdminLoggedIn && (
+                  <Column
+                     header="Delete"
+                     bodyStyle={{ textAlign: 'center' }}
+                     body={rowData => deletionButton(rowData)}
+                  />
+               )}
             </DataTable>
          </div>
          <AddNutrientModal

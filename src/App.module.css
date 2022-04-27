@@ -18,13 +18,13 @@
   padding: 0.75rem 0.25rem 0.75rem 0.25rem !important;
 }
 
-.table th:last-of-type {
+.table th:nth-child(6) {
   padding: 0.75rem !important;
   padding-left: 0.25rem !important;
 }
 
 .table th:nth-child(5) > div,
-.table th:last-of-type > div {
+.table th:nth-child(6) > div {
   justify-content: center;
 }
 
@@ -37,7 +37,7 @@
   padding: 0.25rem !important;
 }
 
-.table tbody tr td:last-of-type {
+.table tbody tr td:nth-child(6) {
   padding: 0.25rem !important;
   padding-right: 0.75rem !important;
 }

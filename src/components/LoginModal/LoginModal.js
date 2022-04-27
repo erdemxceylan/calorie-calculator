@@ -54,7 +54,7 @@ function LoginModal() {
          returnSecureToken: true
       };
 
-      sign({ url, method, body }, data => auth.login(data.idToken));
+      sign({ url, method, body }, data => auth.login(data.idToken, data.email));
 
       formData.reset();
    }

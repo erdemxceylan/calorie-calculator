@@ -6,25 +6,29 @@ const AuthContext = React.createContext({
    isAdminLoggedIn: false,
    login: function (token) { },
    logout: function () { },
-   setIsAdmin: function () { }
+   isAdminLoggingIn: function (boolean) { }
 });
+
+const ADMIN = 'admin@test.com';
 
 export function AuthContextProvider(props) {
    const [token, setToken] = useState(null);
    const [isAdmin, setIsAdmin] = useState(false);
 
    const isLoggedIn = !!token;
-   const isAdminLoggedIn = !!token && isAdmin;
+   const isAdminLoggedIn = isLoggedIn && isAdmin;
 
-   function login(token) {
+   function login(token, email) {
       setToken(token);
+      setIsAdmin(email === ADMIN);
    }
 
    function logout() {
       setToken(null);
+      setIsAdmin(false);
    }
 
-   const value = { token, isLoggedIn, isAdminLoggedIn, login, logout, setIsAdmin };
+   const value = { token, isLoggedIn, isAdminLoggedIn, login, logout };
 
    return (
       <AuthContext.Provider value={value}>
