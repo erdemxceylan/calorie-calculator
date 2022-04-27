@@ -10,7 +10,7 @@ function useHttpRequest() {
    const [isLoading, setIsLoading] = useState(false);
    const [error, setError] = useState(null);
 
-   const sendRequest = useCallback(async (requestConfig, applyData) => {
+   const sendRequest = useCallback(async (requestConfig, successCallback) => {
       setIsLoading(true);
       setError(null);
       const method = requestConfig.method ? requestConfig.method : GET;
@@ -39,7 +39,7 @@ function useHttpRequest() {
             throw new Error('Request failed!');
          }
 
-         if (!!applyData) applyData(response.data);
+         if (!!successCallback) successCallback(response.data);
       } catch (err) {
          setError(err.message || 'Something went wrong!');
       }
