@@ -4,7 +4,7 @@ const AuthContext = React.createContext({
    token: '',
    isLoggedIn: false,
    isAdminLoggedIn: false,
-   login: function (token) { },
+   login: function (token, email) { },
    logout: function () { },
 });
 
