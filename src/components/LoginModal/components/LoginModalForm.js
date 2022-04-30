@@ -46,7 +46,7 @@ function LoginModalForm(props) {
    const isAdmin = enteredEmail === ADMIN;
 
    if (!isLoggingIn && isAdmin) {
-      alert(`${ADMIN} cannot be used for signing up`);
+      alert(`${ADMIN} is reserved`);
       resetInputs();
       areInputsValid = false;
    }

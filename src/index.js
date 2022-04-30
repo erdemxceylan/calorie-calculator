@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { DatabaseContextProvider } from './global/context/database';
 import { AuthContextProvider } from './global/context/auth';
-import store from './global/redux/store';
+import store from './global/redux/index';
 
 ReactDOM.render(
    <Provider store={store}>
